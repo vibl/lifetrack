@@ -1,0 +1,18 @@
+npx postgraphile \
+  --connection 'postgres://vianney:jD910YcMeMh@localhost/wyts' \
+  --cors \
+  --subscriptions \
+  --watch \
+  --dynamic-json \
+  --no-setof-functions-contain-nulls \
+  --no-ignore-rbac \
+  --no-ignore-indexes \
+  --show-error-stack=json \
+  --extended-errors hint,detail,errcode \
+  --append-plugins postgraphile-plugin-connection-filter,@graphile-contrib/pg-simplify-inflector \
+  --export-schema-graphql schema.graphql \
+  --graphiql "/" \
+  --enhance-graphiql \
+  --allow-explain \
+  --enable-query-batching \
+  --legacy-relations omit 
