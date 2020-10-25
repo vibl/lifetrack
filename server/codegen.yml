@@ -1,0 +1,25 @@
+overwrite: true
+schema: "./src/generated/schema.graphql"
+documents: "../src/**/*.graphql"
+generates:
+  ../src/types/graphql/types.ts:
+    - typescript
+  ../src/types/graphql/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .tsx
+      baseTypesPath: types.ts
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
+      - typescript-resolvers
+    config:
+      withHOC: false
+      withComponent: false
+      withMutationFn: true
+      withHooks: true
+      addOperationExport: true
+    
+      # scalars:
+      #   DateTime: "string"
+      #   JSON: "{ [key: string]: any }"

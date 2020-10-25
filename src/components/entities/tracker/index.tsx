@@ -1,15 +1,18 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { redirect } from "util/router";
-import TrackerList from "./TrackerList";
-import TrackerEdit from "./TrackerEdit";
-import TrackerCreate from "./TrackerCreate";
+import EntityTable from "components/entities/EntityTable";
+import config from "./config";
+import Edit from "./Edit";
+import Create from "./Create";
 
-const TrackerRoot = () => <Outlet />;
+const Root = () => <Outlet />;
+
+const List = () => <EntityTable config={config}/>;
 
 export const routes = {
   path:"/tracker",
-  element: <TrackerRoot />,
+  element: <Root />,
   children: [
     {
       path: "/",
@@ -17,15 +20,15 @@ export const routes = {
     },
     {
       path: "list",
-      element: <TrackerList />,
+      element: <List />,
     },
     {
       path: "create",
-      element: <TrackerCreate />,
+      element: <Create />,
     },
     {
       path: "edit/:id",
-      element: <TrackerEdit />,
+      element: <Edit />,
     },
   ],
 };

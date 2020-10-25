@@ -4,16 +4,18 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import { useTable } from 'react-table'
+import { useTable, UseTableOptions } from "react-table";
+
+export interface TableOptions<D extends object> extends UseTableOptions<D> {}
 
 
-function Table({ columns, data }) {
+function Table({ columns, data }: TableOptions<{}>) {
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, headerGroups, rows, prepareRow } = useTable({
     columns,
     data,
   })
-
+  console.log("rows", rows);
   // Render the UI for your table
   return (
     <MaUTable {...getTableProps()}>

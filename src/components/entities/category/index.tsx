@@ -1,15 +1,19 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { redirect } from "../../../util/router";
-import CategoryList from "./CategoryList";
-import CategoryEdit from "./CategoryEdit";
-import CategoryCreate from "./CategoryCreate";
- 
-const CategoryRoot = () => <Outlet />;
+import { redirect } from "util/router";
+import Edit from "./Edit";
+import Create from "./Create";
+import EntityTable from "components/entities/EntityTable";
+import config from "./config";
+
+const Root = () => <Outlet />;
+
+
+const List = () => <EntityTable config={config}/>;
 
 export const routes = {
   path:"/category",
-  element: <CategoryRoot />,
+  element: <Root />,
   children: [
     {
       path: "/",
@@ -17,15 +21,15 @@ export const routes = {
     },
     {
       path: "list",
-      element: <CategoryList />,
+      element: <List />,
     },
     {
       path: "create",
-      element: <CategoryCreate />,
+      element: <Create />,
     },
     {
       path: "edit/:id",
-      element: <CategoryEdit />,
+      element: <Edit />,
     },
   ],
 };

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 npx postgraphile \
   --connection 'postgres://vianney:jD910YcMeMh@localhost/wyts' \
   --cors \
@@ -10,7 +12,7 @@ npx postgraphile \
   --show-error-stack=json \
   --extended-errors hint,detail,errcode \
   --append-plugins postgraphile-plugin-connection-filter,@graphile-contrib/pg-simplify-inflector \
-  --export-schema-graphql schema.graphql \
+  --export-schema-graphql generatated/schema.graphql \
   --graphiql "/" \
   --enhance-graphiql \
   --allow-explain \

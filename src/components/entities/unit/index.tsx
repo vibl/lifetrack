@@ -1,15 +1,18 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { redirect } from "util/router";
-import UnitList from "./UnitList";
-import UnitEdit from "./UnitEdit";
-import UnitCreate from "./UnitCreate";
+import EntityTable from "components/entities/EntityTable";
+import config from "./config";
+import Edit from "./Edit";
+import Create from "./Create";
 
-const UnitRoot = () => <Outlet />;
+const Root = () => <Outlet />;
+
+const List = () => <EntityTable config={config}/>;
 
 export const routes = {
   path:"/unit",
-  element: <UnitRoot />,
+  element: <Root />,
   children: [
     {
       path: "/",
@@ -17,15 +20,15 @@ export const routes = {
     },
     {
       path: "list",
-      element: <UnitList />,
+      element: <List />,
     },
     {
       path: "create",
-      element: <UnitCreate />,
+      element: <Create />,
     },
     {
       path: "edit/:id",
-      element: <UnitEdit />,
+      element: <Edit />,
     },
   ],
 };
