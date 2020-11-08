@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,12 +12,16 @@
   "dependencies": {
     "@graphile-contrib/pg-simplify-inflector": "^6.0.0",
     "@graphql-codegen/cli": "^1.18.0",
+    "@graphql-codegen/named-operations-object": "^1.17.8",
     "@graphql-codegen/near-operation-file-preset": "^1.17.11",
     "@graphql-codegen/typescript": "^1.17.11",
     "@graphql-codegen/typescript-operations": "^1.17.8",
     "@graphql-codegen/typescript-react-apollo": "^2.0.7",
     "@graphql-codegen/typescript-resolvers": "^1.17.10",
+    "generate-graphql-operations": "0.0.4",
+    "graphql.macro": "^1.4.2",
     "postgraphile": "^4.9.0",
-    "postgraphile-plugin-connection-filter": "^2.1.0"
+    "postgraphile-plugin-connection-filter": "^2.1.0",
+    "typescript": "^4.0.3"
   }
 }

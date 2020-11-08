@@ -37,7 +37,7 @@
     "./src/**/*"
   ],
   "exclude": [
-    "./inspiration/**/*"
+    "./inspiration/**/*", ".archive"
   ],
   "typeAcquisition": {
     "enable": true

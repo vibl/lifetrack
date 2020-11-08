@@ -26,3 +26,5 @@ yarn-error.log*
 inspiration/
 .tsmap/
 .archive/
+server/
+dist/

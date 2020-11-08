@@ -1,10 +1,9 @@
 import React from "react";
 import { ApolloProvider } from "@apollo/client";
-import { BrowserRouter as Router } from "react-router-dom";
 import { client } from "data/graphql";
-import Routes from "./Routes";
 import { RecoilRoot } from "recoil";
 import Theme from "./Theme";
+import Router from "./Router";
 
 function App() {
   return (
@@ -12,11 +11,9 @@ function App() {
       <React.StrictMode>
         <Theme>
           <ApolloProvider client={client}>
-            <Router>
-              <RecoilRoot>
-                <Routes />
-              </RecoilRoot>
-            </Router>
+            <RecoilRoot>
+              <Router />
+            </RecoilRoot>
           </ApolloProvider>
         </Theme>
       </React.StrictMode>

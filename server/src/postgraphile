@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 npx postgraphile \
   --connection 'postgres://vianney:jD910YcMeMh@localhost/wyts' \
   --cors \
@@ -12,9 +14,12 @@ npx postgraphile \
   --show-error-stack=json \
   --extended-errors hint,detail,errcode \
   --append-plugins postgraphile-plugin-connection-filter,@graphile-contrib/pg-simplify-inflector \
-  --export-schema-graphql generatated/schema.graphql \
+  --export-schema-graphql generated/schema.graphql \
   --graphiql "/" \
   --enhance-graphiql \
   --allow-explain \
   --enable-query-batching \
-  --legacy-relations omit 
+  --legacy-relations omit \
+  --simple-collections only
+
+  set +x

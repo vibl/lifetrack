@@ -1,5 +1,8 @@
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import { gql } from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1281,3 +1284,548 @@ export type UpdateUnitPayload = {
 export type UpdateUnitPayloadUnitEdgeArgs = {
   orderBy?: Maybe<Array<UnitsOrderBy>>;
 };
+
+
+
+export type ResolverTypeWrapper<T> = Promise<T> | T;
+
+
+export type LegacyStitchingResolver<TResult, TParent, TContext, TArgs> = {
+  fragment: string;
+  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
+};
+
+export type NewStitchingResolver<TResult, TParent, TContext, TArgs> = {
+  selectionSet: string;
+  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
+};
+export type StitchingResolver<TResult, TParent, TContext, TArgs> = LegacyStitchingResolver<TResult, TParent, TContext, TArgs> | NewStitchingResolver<TResult, TParent, TContext, TArgs>;
+export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
+  | ResolverFn<TResult, TParent, TContext, TArgs>
+  | StitchingResolver<TResult, TParent, TContext, TArgs>;
+
+export type ResolverFn<TResult, TParent, TContext, TArgs> = (
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => Promise<TResult> | TResult;
+
+export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => AsyncIterator<TResult> | Promise<AsyncIterator<TResult>>;
+
+export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => TResult | Promise<TResult>;
+
+export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
+  subscribe: SubscriptionSubscribeFn<{ [key in TKey]: TResult }, TParent, TContext, TArgs>;
+  resolve?: SubscriptionResolveFn<TResult, { [key in TKey]: TResult }, TContext, TArgs>;
+}
+
+export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
+  subscribe: SubscriptionSubscribeFn<any, TParent, TContext, TArgs>;
+  resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>;
+}
+
+export type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> =
+  | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
+  | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
+
+export type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> =
+  | ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
+  | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
+
+export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
+  parent: TParent,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
+
+export type IsTypeOfResolverFn<T = {}, TContext = {}> = (obj: T, context: TContext, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
+
+export type NextResolverFn<T> = () => Promise<T>;
+
+export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (
+  next: NextResolverFn<TResult>,
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => TResult | Promise<TResult>;
+
+/** Mapping between all available schema types and the resolvers types */
+export type ResolversTypes = {
+  Query: ResolverTypeWrapper<{}>;
+  Node: ResolversTypes['Query'] | ResolversTypes['Category'] | ResolversTypes['Tracker'] | ResolversTypes['Unit'] | ResolversTypes['Entry'];
+  ID: ResolverTypeWrapper<Scalars['ID']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  Cursor: ResolverTypeWrapper<Scalars['Cursor']>;
+  CategoriesOrderBy: CategoriesOrderBy;
+  CategoryCondition: CategoryCondition;
+  CategoryFilter: CategoryFilter;
+  IntFilter: IntFilter;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  CategoriesConnection: ResolverTypeWrapper<CategoriesConnection>;
+  Category: ResolverTypeWrapper<Category>;
+  String: ResolverTypeWrapper<Scalars['String']>;
+  TrackersOrderBy: TrackersOrderBy;
+  TrackerCondition: TrackerCondition;
+  TrackerFilter: TrackerFilter;
+  TrackersConnection: ResolverTypeWrapper<TrackersConnection>;
+  Tracker: ResolverTypeWrapper<Tracker>;
+  Unit: ResolverTypeWrapper<Unit>;
+  UnitsOrderBy: UnitsOrderBy;
+  UnitCondition: UnitCondition;
+  UnitFilter: UnitFilter;
+  UnitsConnection: ResolverTypeWrapper<UnitsConnection>;
+  UnitsEdge: ResolverTypeWrapper<UnitsEdge>;
+  PageInfo: ResolverTypeWrapper<PageInfo>;
+  EntriesOrderBy: EntriesOrderBy;
+  EntryCondition: EntryCondition;
+  EntryFilter: EntryFilter;
+  EntriesConnection: ResolverTypeWrapper<EntriesConnection>;
+  Entry: ResolverTypeWrapper<Entry>;
+  Datetime: ResolverTypeWrapper<Scalars['Datetime']>;
+  EntriesEdge: ResolverTypeWrapper<EntriesEdge>;
+  TrackersEdge: ResolverTypeWrapper<TrackersEdge>;
+  CategoriesEdge: ResolverTypeWrapper<CategoriesEdge>;
+  Mutation: ResolverTypeWrapper<{}>;
+  CreateCategoryInput: CreateCategoryInput;
+  CategoryInput: CategoryInput;
+  CreateCategoryPayload: ResolverTypeWrapper<CreateCategoryPayload>;
+  CreateEntryInput: CreateEntryInput;
+  EntryInput: EntryInput;
+  CreateEntryPayload: ResolverTypeWrapper<CreateEntryPayload>;
+  CreateTrackerInput: CreateTrackerInput;
+  TrackerInput: TrackerInput;
+  CreateTrackerPayload: ResolverTypeWrapper<CreateTrackerPayload>;
+  CreateUnitInput: CreateUnitInput;
+  UnitInput: UnitInput;
+  CreateUnitPayload: ResolverTypeWrapper<CreateUnitPayload>;
+  UpdateCategoryByNodeIdInput: UpdateCategoryByNodeIdInput;
+  CategoryPatch: CategoryPatch;
+  UpdateCategoryPayload: ResolverTypeWrapper<UpdateCategoryPayload>;
+  UpdateCategoryInput: UpdateCategoryInput;
+  UpdateEntryByNodeIdInput: UpdateEntryByNodeIdInput;
+  EntryPatch: EntryPatch;
+  UpdateEntryPayload: ResolverTypeWrapper<UpdateEntryPayload>;
+  UpdateEntryInput: UpdateEntryInput;
+  UpdateTrackerByNodeIdInput: UpdateTrackerByNodeIdInput;
+  TrackerPatch: TrackerPatch;
+  UpdateTrackerPayload: ResolverTypeWrapper<UpdateTrackerPayload>;
+  UpdateTrackerInput: UpdateTrackerInput;
+  UpdateUnitByNodeIdInput: UpdateUnitByNodeIdInput;
+  UnitPatch: UnitPatch;
+  UpdateUnitPayload: ResolverTypeWrapper<UpdateUnitPayload>;
+  UpdateUnitInput: UpdateUnitInput;
+  DeleteCategoryByNodeIdInput: DeleteCategoryByNodeIdInput;
+  DeleteCategoryPayload: ResolverTypeWrapper<DeleteCategoryPayload>;
+  DeleteCategoryInput: DeleteCategoryInput;
+  DeleteEntryByNodeIdInput: DeleteEntryByNodeIdInput;
+  DeleteEntryPayload: ResolverTypeWrapper<DeleteEntryPayload>;
+  DeleteEntryInput: DeleteEntryInput;
+  DeleteTrackerByNodeIdInput: DeleteTrackerByNodeIdInput;
+  DeleteTrackerPayload: ResolverTypeWrapper<DeleteTrackerPayload>;
+  DeleteTrackerInput: DeleteTrackerInput;
+  DeleteUnitByNodeIdInput: DeleteUnitByNodeIdInput;
+  DeleteUnitPayload: ResolverTypeWrapper<DeleteUnitPayload>;
+  DeleteUnitInput: DeleteUnitInput;
+};
+
+/** Mapping between all available schema types and the resolvers parents */
+export type ResolversParentTypes = {
+  Query: {};
+  Node: ResolversParentTypes['Query'] | ResolversParentTypes['Category'] | ResolversParentTypes['Tracker'] | ResolversParentTypes['Unit'] | ResolversParentTypes['Entry'];
+  ID: Scalars['ID'];
+  Int: Scalars['Int'];
+  Cursor: Scalars['Cursor'];
+  CategoryCondition: CategoryCondition;
+  CategoryFilter: CategoryFilter;
+  IntFilter: IntFilter;
+  Boolean: Scalars['Boolean'];
+  CategoriesConnection: CategoriesConnection;
+  Category: Category;
+  String: Scalars['String'];
+  TrackerCondition: TrackerCondition;
+  TrackerFilter: TrackerFilter;
+  TrackersConnection: TrackersConnection;
+  Tracker: Tracker;
+  Unit: Unit;
+  UnitCondition: UnitCondition;
+  UnitFilter: UnitFilter;
+  UnitsConnection: UnitsConnection;
+  UnitsEdge: UnitsEdge;
+  PageInfo: PageInfo;
+  EntryCondition: EntryCondition;
+  EntryFilter: EntryFilter;
+  EntriesConnection: EntriesConnection;
+  Entry: Entry;
+  Datetime: Scalars['Datetime'];
+  EntriesEdge: EntriesEdge;
+  TrackersEdge: TrackersEdge;
+  CategoriesEdge: CategoriesEdge;
+  Mutation: {};
+  CreateCategoryInput: CreateCategoryInput;
+  CategoryInput: CategoryInput;
+  CreateCategoryPayload: CreateCategoryPayload;
+  CreateEntryInput: CreateEntryInput;
+  EntryInput: EntryInput;
+  CreateEntryPayload: CreateEntryPayload;
+  CreateTrackerInput: CreateTrackerInput;
+  TrackerInput: TrackerInput;
+  CreateTrackerPayload: CreateTrackerPayload;
+  CreateUnitInput: CreateUnitInput;
+  UnitInput: UnitInput;
+  CreateUnitPayload: CreateUnitPayload;
+  UpdateCategoryByNodeIdInput: UpdateCategoryByNodeIdInput;
+  CategoryPatch: CategoryPatch;
+  UpdateCategoryPayload: UpdateCategoryPayload;
+  UpdateCategoryInput: UpdateCategoryInput;
+  UpdateEntryByNodeIdInput: UpdateEntryByNodeIdInput;
+  EntryPatch: EntryPatch;
+  UpdateEntryPayload: UpdateEntryPayload;
+  UpdateEntryInput: UpdateEntryInput;
+  UpdateTrackerByNodeIdInput: UpdateTrackerByNodeIdInput;
+  TrackerPatch: TrackerPatch;
+  UpdateTrackerPayload: UpdateTrackerPayload;
+  UpdateTrackerInput: UpdateTrackerInput;
+  UpdateUnitByNodeIdInput: UpdateUnitByNodeIdInput;
+  UnitPatch: UnitPatch;
+  UpdateUnitPayload: UpdateUnitPayload;
+  UpdateUnitInput: UpdateUnitInput;
+  DeleteCategoryByNodeIdInput: DeleteCategoryByNodeIdInput;
+  DeleteCategoryPayload: DeleteCategoryPayload;
+  DeleteCategoryInput: DeleteCategoryInput;
+  DeleteEntryByNodeIdInput: DeleteEntryByNodeIdInput;
+  DeleteEntryPayload: DeleteEntryPayload;
+  DeleteEntryInput: DeleteEntryInput;
+  DeleteTrackerByNodeIdInput: DeleteTrackerByNodeIdInput;
+  DeleteTrackerPayload: DeleteTrackerPayload;
+  DeleteTrackerInput: DeleteTrackerInput;
+  DeleteUnitByNodeIdInput: DeleteUnitByNodeIdInput;
+  DeleteUnitPayload: DeleteUnitPayload;
+  DeleteUnitInput: DeleteUnitInput;
+};
+
+export type CategoriesConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['CategoriesConnection'] = ResolversParentTypes['CategoriesConnection']> = {
+  nodes?: Resolver<Array<ResolversTypes['Category']>, ParentType, ContextType>;
+  edges?: Resolver<Array<ResolversTypes['CategoriesEdge']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CategoriesEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['CategoriesEdge'] = ResolversParentTypes['CategoriesEdge']> = {
+  cursor?: Resolver<Maybe<ResolversTypes['Cursor']>, ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['Category'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CategoryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Category'] = ResolversParentTypes['Category']> = {
+  nodeId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  trackers?: Resolver<ResolversTypes['TrackersConnection'], ParentType, ContextType, RequireFields<CategoryTrackersArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CreateCategoryPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreateCategoryPayload'] = ResolversParentTypes['CreateCategoryPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  categoryEdge?: Resolver<Maybe<ResolversTypes['CategoriesEdge']>, ParentType, ContextType, RequireFields<CreateCategoryPayloadCategoryEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CreateEntryPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreateEntryPayload'] = ResolversParentTypes['CreateEntryPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  entry?: Resolver<Maybe<ResolversTypes['Entry']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  tracker?: Resolver<Maybe<ResolversTypes['Tracker']>, ParentType, ContextType>;
+  entryEdge?: Resolver<Maybe<ResolversTypes['EntriesEdge']>, ParentType, ContextType, RequireFields<CreateEntryPayloadEntryEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CreateTrackerPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreateTrackerPayload'] = ResolversParentTypes['CreateTrackerPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tracker?: Resolver<Maybe<ResolversTypes['Tracker']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType>;
+  unit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  trackerEdge?: Resolver<Maybe<ResolversTypes['TrackersEdge']>, ParentType, ContextType, RequireFields<CreateTrackerPayloadTrackerEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CreateUnitPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreateUnitPayload'] = ResolversParentTypes['CreateUnitPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  unit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  unitByBaseUnit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  unitEdge?: Resolver<Maybe<ResolversTypes['UnitsEdge']>, ParentType, ContextType, RequireFields<CreateUnitPayloadUnitEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export interface CursorScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Cursor'], any> {
+  name: 'Cursor';
+}
+
+export interface DatetimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Datetime'], any> {
+  name: 'Datetime';
+}
+
+export type DeleteCategoryPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeleteCategoryPayload'] = ResolversParentTypes['DeleteCategoryPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType>;
+  deletedCategoryNodeId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  categoryEdge?: Resolver<Maybe<ResolversTypes['CategoriesEdge']>, ParentType, ContextType, RequireFields<DeleteCategoryPayloadCategoryEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DeleteEntryPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeleteEntryPayload'] = ResolversParentTypes['DeleteEntryPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  entry?: Resolver<Maybe<ResolversTypes['Entry']>, ParentType, ContextType>;
+  deletedEntryNodeId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  tracker?: Resolver<Maybe<ResolversTypes['Tracker']>, ParentType, ContextType>;
+  entryEdge?: Resolver<Maybe<ResolversTypes['EntriesEdge']>, ParentType, ContextType, RequireFields<DeleteEntryPayloadEntryEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DeleteTrackerPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeleteTrackerPayload'] = ResolversParentTypes['DeleteTrackerPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tracker?: Resolver<Maybe<ResolversTypes['Tracker']>, ParentType, ContextType>;
+  deletedTrackerNodeId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType>;
+  unit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  trackerEdge?: Resolver<Maybe<ResolversTypes['TrackersEdge']>, ParentType, ContextType, RequireFields<DeleteTrackerPayloadTrackerEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type DeleteUnitPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeleteUnitPayload'] = ResolversParentTypes['DeleteUnitPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  unit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  deletedUnitNodeId?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  unitByBaseUnit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  unitEdge?: Resolver<Maybe<ResolversTypes['UnitsEdge']>, ParentType, ContextType, RequireFields<DeleteUnitPayloadUnitEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type EntriesConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['EntriesConnection'] = ResolversParentTypes['EntriesConnection']> = {
+  nodes?: Resolver<Array<ResolversTypes['Entry']>, ParentType, ContextType>;
+  edges?: Resolver<Array<ResolversTypes['EntriesEdge']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type EntriesEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['EntriesEdge'] = ResolversParentTypes['EntriesEdge']> = {
+  cursor?: Resolver<Maybe<ResolversTypes['Cursor']>, ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['Entry'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type EntryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Entry'] = ResolversParentTypes['Entry']> = {
+  nodeId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  time?: Resolver<ResolversTypes['Datetime'], ParentType, ContextType>;
+  comment?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  value?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['Datetime'], ParentType, ContextType>;
+  trackerId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  tracker?: Resolver<Maybe<ResolversTypes['Tracker']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  createCategory?: Resolver<Maybe<ResolversTypes['CreateCategoryPayload']>, ParentType, ContextType, RequireFields<MutationCreateCategoryArgs, 'input'>>;
+  createEntry?: Resolver<Maybe<ResolversTypes['CreateEntryPayload']>, ParentType, ContextType, RequireFields<MutationCreateEntryArgs, 'input'>>;
+  createTracker?: Resolver<Maybe<ResolversTypes['CreateTrackerPayload']>, ParentType, ContextType, RequireFields<MutationCreateTrackerArgs, 'input'>>;
+  createUnit?: Resolver<Maybe<ResolversTypes['CreateUnitPayload']>, ParentType, ContextType, RequireFields<MutationCreateUnitArgs, 'input'>>;
+  updateCategoryByNodeId?: Resolver<Maybe<ResolversTypes['UpdateCategoryPayload']>, ParentType, ContextType, RequireFields<MutationUpdateCategoryByNodeIdArgs, 'input'>>;
+  updateCategory?: Resolver<Maybe<ResolversTypes['UpdateCategoryPayload']>, ParentType, ContextType, RequireFields<MutationUpdateCategoryArgs, 'input'>>;
+  updateEntryByNodeId?: Resolver<Maybe<ResolversTypes['UpdateEntryPayload']>, ParentType, ContextType, RequireFields<MutationUpdateEntryByNodeIdArgs, 'input'>>;
+  updateEntry?: Resolver<Maybe<ResolversTypes['UpdateEntryPayload']>, ParentType, ContextType, RequireFields<MutationUpdateEntryArgs, 'input'>>;
+  updateTrackerByNodeId?: Resolver<Maybe<ResolversTypes['UpdateTrackerPayload']>, ParentType, ContextType, RequireFields<MutationUpdateTrackerByNodeIdArgs, 'input'>>;
+  updateTracker?: Resolver<Maybe<ResolversTypes['UpdateTrackerPayload']>, ParentType, ContextType, RequireFields<MutationUpdateTrackerArgs, 'input'>>;
+  updateUnitByNodeId?: Resolver<Maybe<ResolversTypes['UpdateUnitPayload']>, ParentType, ContextType, RequireFields<MutationUpdateUnitByNodeIdArgs, 'input'>>;
+  updateUnit?: Resolver<Maybe<ResolversTypes['UpdateUnitPayload']>, ParentType, ContextType, RequireFields<MutationUpdateUnitArgs, 'input'>>;
+  deleteCategoryByNodeId?: Resolver<Maybe<ResolversTypes['DeleteCategoryPayload']>, ParentType, ContextType, RequireFields<MutationDeleteCategoryByNodeIdArgs, 'input'>>;
+  deleteCategory?: Resolver<Maybe<ResolversTypes['DeleteCategoryPayload']>, ParentType, ContextType, RequireFields<MutationDeleteCategoryArgs, 'input'>>;
+  deleteEntryByNodeId?: Resolver<Maybe<ResolversTypes['DeleteEntryPayload']>, ParentType, ContextType, RequireFields<MutationDeleteEntryByNodeIdArgs, 'input'>>;
+  deleteEntry?: Resolver<Maybe<ResolversTypes['DeleteEntryPayload']>, ParentType, ContextType, RequireFields<MutationDeleteEntryArgs, 'input'>>;
+  deleteTrackerByNodeId?: Resolver<Maybe<ResolversTypes['DeleteTrackerPayload']>, ParentType, ContextType, RequireFields<MutationDeleteTrackerByNodeIdArgs, 'input'>>;
+  deleteTracker?: Resolver<Maybe<ResolversTypes['DeleteTrackerPayload']>, ParentType, ContextType, RequireFields<MutationDeleteTrackerArgs, 'input'>>;
+  deleteUnitByNodeId?: Resolver<Maybe<ResolversTypes['DeleteUnitPayload']>, ParentType, ContextType, RequireFields<MutationDeleteUnitByNodeIdArgs, 'input'>>;
+  deleteUnit?: Resolver<Maybe<ResolversTypes['DeleteUnitPayload']>, ParentType, ContextType, RequireFields<MutationDeleteUnitArgs, 'input'>>;
+};
+
+export type NodeResolvers<ContextType = any, ParentType extends ResolversParentTypes['Node'] = ResolversParentTypes['Node']> = {
+  __resolveType: TypeResolveFn<'Query' | 'Category' | 'Tracker' | 'Unit' | 'Entry', ParentType, ContextType>;
+  nodeId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+};
+
+export type PageInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo']> = {
+  hasNextPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  hasPreviousPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  startCursor?: Resolver<Maybe<ResolversTypes['Cursor']>, ParentType, ContextType>;
+  endCursor?: Resolver<Maybe<ResolversTypes['Cursor']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  query?: Resolver<ResolversTypes['Query'], ParentType, ContextType>;
+  nodeId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  node?: Resolver<Maybe<ResolversTypes['Node']>, ParentType, ContextType, RequireFields<QueryNodeArgs, 'nodeId'>>;
+  categories?: Resolver<Maybe<ResolversTypes['CategoriesConnection']>, ParentType, ContextType, RequireFields<QueryCategoriesArgs, 'orderBy'>>;
+  entries?: Resolver<Maybe<ResolversTypes['EntriesConnection']>, ParentType, ContextType, RequireFields<QueryEntriesArgs, 'orderBy'>>;
+  trackers?: Resolver<Maybe<ResolversTypes['TrackersConnection']>, ParentType, ContextType, RequireFields<QueryTrackersArgs, 'orderBy'>>;
+  units?: Resolver<Maybe<ResolversTypes['UnitsConnection']>, ParentType, ContextType, RequireFields<QueryUnitsArgs, 'orderBy'>>;
+  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<QueryCategoryArgs, 'id'>>;
+  entry?: Resolver<Maybe<ResolversTypes['Entry']>, ParentType, ContextType, RequireFields<QueryEntryArgs, 'id'>>;
+  tracker?: Resolver<Maybe<ResolversTypes['Tracker']>, ParentType, ContextType, RequireFields<QueryTrackerArgs, 'id'>>;
+  unit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType, RequireFields<QueryUnitArgs, 'id'>>;
+  categoryByNodeId?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<QueryCategoryByNodeIdArgs, 'nodeId'>>;
+  entryByNodeId?: Resolver<Maybe<ResolversTypes['Entry']>, ParentType, ContextType, RequireFields<QueryEntryByNodeIdArgs, 'nodeId'>>;
+  trackerByNodeId?: Resolver<Maybe<ResolversTypes['Tracker']>, ParentType, ContextType, RequireFields<QueryTrackerByNodeIdArgs, 'nodeId'>>;
+  unitByNodeId?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType, RequireFields<QueryUnitByNodeIdArgs, 'nodeId'>>;
+};
+
+export type TrackerResolvers<ContextType = any, ParentType extends ResolversParentTypes['Tracker'] = ResolversParentTypes['Tracker']> = {
+  nodeId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  categoryId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  unitId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType>;
+  unit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  entries?: Resolver<ResolversTypes['EntriesConnection'], ParentType, ContextType, RequireFields<TrackerEntriesArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TrackersConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['TrackersConnection'] = ResolversParentTypes['TrackersConnection']> = {
+  nodes?: Resolver<Array<ResolversTypes['Tracker']>, ParentType, ContextType>;
+  edges?: Resolver<Array<ResolversTypes['TrackersEdge']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TrackersEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['TrackersEdge'] = ResolversParentTypes['TrackersEdge']> = {
+  cursor?: Resolver<Maybe<ResolversTypes['Cursor']>, ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['Tracker'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type UnitResolvers<ContextType = any, ParentType extends ResolversParentTypes['Unit'] = ResolversParentTypes['Unit']> = {
+  nodeId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  abbreviation?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  baseUnit?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  multiplier?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  unitByBaseUnit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  unitsByBaseUnit?: Resolver<ResolversTypes['UnitsConnection'], ParentType, ContextType, RequireFields<UnitUnitsByBaseUnitArgs, 'orderBy'>>;
+  trackers?: Resolver<ResolversTypes['TrackersConnection'], ParentType, ContextType, RequireFields<UnitTrackersArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type UnitsConnectionResolvers<ContextType = any, ParentType extends ResolversParentTypes['UnitsConnection'] = ResolversParentTypes['UnitsConnection']> = {
+  nodes?: Resolver<Array<ResolversTypes['Unit']>, ParentType, ContextType>;
+  edges?: Resolver<Array<ResolversTypes['UnitsEdge']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type UnitsEdgeResolvers<ContextType = any, ParentType extends ResolversParentTypes['UnitsEdge'] = ResolversParentTypes['UnitsEdge']> = {
+  cursor?: Resolver<Maybe<ResolversTypes['Cursor']>, ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['Unit'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type UpdateCategoryPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdateCategoryPayload'] = ResolversParentTypes['UpdateCategoryPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  categoryEdge?: Resolver<Maybe<ResolversTypes['CategoriesEdge']>, ParentType, ContextType, RequireFields<UpdateCategoryPayloadCategoryEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type UpdateEntryPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdateEntryPayload'] = ResolversParentTypes['UpdateEntryPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  entry?: Resolver<Maybe<ResolversTypes['Entry']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  tracker?: Resolver<Maybe<ResolversTypes['Tracker']>, ParentType, ContextType>;
+  entryEdge?: Resolver<Maybe<ResolversTypes['EntriesEdge']>, ParentType, ContextType, RequireFields<UpdateEntryPayloadEntryEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type UpdateTrackerPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdateTrackerPayload'] = ResolversParentTypes['UpdateTrackerPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  tracker?: Resolver<Maybe<ResolversTypes['Tracker']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  category?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType>;
+  unit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  trackerEdge?: Resolver<Maybe<ResolversTypes['TrackersEdge']>, ParentType, ContextType, RequireFields<UpdateTrackerPayloadTrackerEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type UpdateUnitPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdateUnitPayload'] = ResolversParentTypes['UpdateUnitPayload']> = {
+  clientMutationId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  unit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  query?: Resolver<Maybe<ResolversTypes['Query']>, ParentType, ContextType>;
+  unitByBaseUnit?: Resolver<Maybe<ResolversTypes['Unit']>, ParentType, ContextType>;
+  unitEdge?: Resolver<Maybe<ResolversTypes['UnitsEdge']>, ParentType, ContextType, RequireFields<UpdateUnitPayloadUnitEdgeArgs, 'orderBy'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Resolvers<ContextType = any> = {
+  CategoriesConnection?: CategoriesConnectionResolvers<ContextType>;
+  CategoriesEdge?: CategoriesEdgeResolvers<ContextType>;
+  Category?: CategoryResolvers<ContextType>;
+  CreateCategoryPayload?: CreateCategoryPayloadResolvers<ContextType>;
+  CreateEntryPayload?: CreateEntryPayloadResolvers<ContextType>;
+  CreateTrackerPayload?: CreateTrackerPayloadResolvers<ContextType>;
+  CreateUnitPayload?: CreateUnitPayloadResolvers<ContextType>;
+  Cursor?: GraphQLScalarType;
+  Datetime?: GraphQLScalarType;
+  DeleteCategoryPayload?: DeleteCategoryPayloadResolvers<ContextType>;
+  DeleteEntryPayload?: DeleteEntryPayloadResolvers<ContextType>;
+  DeleteTrackerPayload?: DeleteTrackerPayloadResolvers<ContextType>;
+  DeleteUnitPayload?: DeleteUnitPayloadResolvers<ContextType>;
+  EntriesConnection?: EntriesConnectionResolvers<ContextType>;
+  EntriesEdge?: EntriesEdgeResolvers<ContextType>;
+  Entry?: EntryResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
+  Node?: NodeResolvers<ContextType>;
+  PageInfo?: PageInfoResolvers<ContextType>;
+  Query?: QueryResolvers<ContextType>;
+  Tracker?: TrackerResolvers<ContextType>;
+  TrackersConnection?: TrackersConnectionResolvers<ContextType>;
+  TrackersEdge?: TrackersEdgeResolvers<ContextType>;
+  Unit?: UnitResolvers<ContextType>;
+  UnitsConnection?: UnitsConnectionResolvers<ContextType>;
+  UnitsEdge?: UnitsEdgeResolvers<ContextType>;
+  UpdateCategoryPayload?: UpdateCategoryPayloadResolvers<ContextType>;
+  UpdateEntryPayload?: UpdateEntryPayloadResolvers<ContextType>;
+  UpdateTrackerPayload?: UpdateTrackerPayloadResolvers<ContextType>;
+  UpdateUnitPayload?: UpdateUnitPayloadResolvers<ContextType>;
+};
+
+
+/**
+ * @deprecated
+ * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
+ */
+export type IResolvers<ContextType = any> = Resolvers<ContextType>;
