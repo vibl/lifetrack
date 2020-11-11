@@ -1,10 +1,10 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 import { TextFieldProps } from "@material-ui/core";
-import { Tfield } from "config/entity";
+import { Tfield } from "config/entities";
 import { KeyboardDateTimePicker } from "@material-ui/pickers";
 
-function DateTimePicker(props:
+export function DateTimePicker(props:
   { field: Tfield; } &
   Partial<TextFieldProps>) {
   const { field } = props;
@@ -26,5 +26,3 @@ function DateTimePicker(props:
       )} />
   );
 }
-
-export default DateTimePicker;

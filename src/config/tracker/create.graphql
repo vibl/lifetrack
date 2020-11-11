@@ -1,0 +1,11 @@
+mutation CreateTracker($input: CreateTrackerInput!) {
+  createTracker(input: $input) {
+    clientMutationId
+    tracker {
+      id
+      name
+      unitId
+      categoryId
+    }
+  }
+}

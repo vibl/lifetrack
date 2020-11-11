@@ -15,6 +15,4 @@ for(key in acc) {
   acc[key] = () => useRecoilState(newAtom); // eslint-disable-line react-hooks/rules-of-hooks
 }
 
-const useAtom = acc as UseRecoil<AtomsConfig>
-
-export default useAtom;
+export const useAtom = acc as UseRecoil<AtomsConfig>

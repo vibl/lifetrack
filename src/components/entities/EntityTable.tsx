@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import memoize from "lodash/memoize";
-import { DataGrid, SelectionChangeParams } from '@material-ui/data-grid';
-import { gql, useQuery } from "@apollo/client";
-import entitiesConfig, { Tfield } from "config/entity";
-import useAtom from "data/state/recoil";
+import { CellParams, DataGrid, SelectionChangeParams } from '@material-ui/data-grid';
+import { useQuery } from "@apollo/client";
+import { entitiesConfig, Tfield } from "config/entities";
+import { useAtom } from "data/state/recoil";
 import { SelectionAtom } from "data/state/atoms/selection";
-import { useEntityPageTuple } from "components/Router";
+import { useEntityPageTuple, useGoTo } from "components/Router";
 
 const getColumns = memoize(
   (fields: Tfield[]) => 
@@ -20,49 +20,53 @@ const getColumns = memoize(
   )
 );
 
-const EntityTable: FC = () => {
-
+export function EntityTable() {
+  const goTo = useGoTo();
   const [entityType] = useEntityPageTuple();
-  const [selection, setSelection] = useAtom.selection();
+  const [, setSelection] = useAtom.selection();
   const config = entitiesConfig[entityType];
-  const { loading, error, data } = useQuery(gql(config.gql.list));
+  const { loading, error, data } = useQuery(config.gql.list);
   const columns = getColumns(config.fields);
 
   const rowsData = React.useMemo(
     () => data?.list?.map(
-        (obj: any) => config.fields.reduce(
-          (acc, field: Tfield) =>  ({...acc, id: obj.id, [field.id]: field.get ? field.get(obj) : obj[field.id]})
-      , {}))
-    , [data, config]);
+      (obj: any) => config.fields.reduce(
+        (acc, field: Tfield) => ({ ...acc, id: obj.id, [field.id]: field.get ? field.get(obj) : obj[field.id] }),
+        {})),
+    [data, config]);
 
   const sortModel = config.fields
-    .filter( field => field.sort)
-    .map( (field) => ({ field: field.id, sort: field.sort }));
-    
-  if (loading || !rowsData ) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+    .filter(field => field.sort)
+    .map((field) => ({ field: field.id, sort: field.sort }));
 
-  const onSelection = (selected: SelectionChangeParams) => {
-    const selection = selected.rows.map( o => Number(o.id) );
-    setSelection( (sel: SelectionAtom) => ({ ...sel, [entityType]: selection }) );
+  if (loading || !rowsData)
+    return <p>Loading...</p>;
+  if (error)
+    return <p>Error :(</p>;
+
+  function onSelection(selected: SelectionChangeParams) {
+    const selection = selected.rows.map(o => Number(o.id));
+    setSelection((sel: SelectionAtom) => ({ ...sel, [entityType]: selection }));
   }
-  console.log("rowsData", rowsData);
-
+  function handleCellClick(cell: CellParams) {
+    if (cell.field === columns[0].field) {
+      goTo([, "update"]);
+    }
+  }
   return (
-     <div style={{ width: '100%' }}>
-       <DataGrid 
-        columns={columns} 
-        rows={rowsData} 
+    <div style={{ width: '100%' }}>
+      <DataGrid
+        columns={columns}
+        rows={rowsData}
         rowCount={rowsData.length}
         sortModel={sortModel}
         onSelectionChange={onSelection}
+        onCellClick={handleCellClick}
         autoHeight
         pageSize={20}
         checkboxSelection
         disableExtendRowFullWidth
-      />
+        disableSelectionOnClick />
     </div>
   );
 }
-
-export default EntityTable;

@@ -1,0 +1,18 @@
+mutation UpdateUnit($input: UpdateUnitInput!) {
+  updateUnit(input: $input) {
+    clientMutationId
+    entity: unit {
+      id
+      name
+      abbreviation
+      baseUnit
+      multiplier
+      trackersList {
+        id
+        entriesList {
+          id
+        }
+      }
+    }
+  }
+}

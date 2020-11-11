@@ -9,7 +9,7 @@ import { useTable, UseTableOptions } from "react-table";
 export interface TableOptions<D extends object> extends UseTableOptions<D> {}
 
 
-function Table({ columns, data }: TableOptions<{}>) {
+export function Table({ columns, data }: TableOptions<{}>) {
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, headerGroups, rows, prepareRow } = useTable({
     columns,
@@ -49,5 +49,3 @@ function Table({ columns, data }: TableOptions<{}>) {
     </MaUTable>
   )
 }
-
-export default Table;

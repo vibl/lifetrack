@@ -1,12 +1,12 @@
-import { FetchResult, gql, useMutation } from "@apollo/client";
-import entitiesConfig, { TentityTypeK, TgqlRequestK } from "config/entity";
+import { FetchResult, useMutation } from "@apollo/client";
+import { entitiesConfig, TentityTypeK, TgqlRequestK } from "config/entities";
 
 export function useEntityMutation(
   action: TgqlRequestK,
   entityType: TentityTypeK,
   onMutationCompleted: any) {
   const mutation = entitiesConfig[entityType].gql[action];
-  const [mutate] = useMutation(gql(mutation), {
+  const [mutate] = useMutation(mutation, {
     onCompleted: onMutationCompleted,
     update: (cache, { data }: FetchResult) => {
       if( !data ) return;
@@ -19,12 +19,12 @@ export function useEntityMutation(
       if( action === "create" ) {
         const entity = Object.values(data)[0].entity;
         cache.writeQuery({
-          query: gql(mutation),
+          query: mutation,
           data: entity,
         })
       }
     },
-    refetchQueries: [{ query: gql(entitiesConfig[entityType].gql.list) }]
+    refetchQueries: [{ query: entitiesConfig[entityType].gql.list }]
   });
 
   return (input: any) => mutate({ variables: { input } });

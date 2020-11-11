@@ -1,0 +1,15 @@
+query {
+  list: unitsList {
+    id
+    name
+    abbreviation
+    baseUnit
+    multiplier
+    trackersList {
+      id
+      entriesList {
+        id
+      }
+    }
+  }
+}

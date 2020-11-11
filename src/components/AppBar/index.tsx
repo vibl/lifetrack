@@ -1,9 +1,9 @@
 import React from "react";
 import { AppBar as MuAppbar, IconButton, Toolbar, Typography } from "@material-ui/core";
-import useAtom from "data/state/recoil";
 import MenuIcon from "@material-ui/icons/Menu";
-import CreateButton from "./CreateButton";
-import DeleteButton from "./DeleteButton";
+import { useAtom } from "data/state/recoil";
+import { CreateButton } from "./CreateButton";
+import { DeleteButton } from "./DeleteButton";
 import { useEntityPageTuple, useIsCurrentLocationAnEntityPage } from "components/Router";
 import { upperFirst } from "lodash";
 import pluralize from "pluralize";
@@ -27,7 +27,7 @@ function EntityBar() {
   )
 }
 
-function AppBar() {
+export function AppBar() {
   const isCurrentLocationAnEntityPage = useIsCurrentLocationAnEntityPage();
   const [, setDrawerIsOpen] = useAtom.drawer();
   return (
@@ -46,5 +46,3 @@ function AppBar() {
     </MuAppbar>
   );
 }
-
-export default AppBar;

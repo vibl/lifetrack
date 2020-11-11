@@ -1,0 +1,18 @@
+query {
+  list: entriesList {
+    createdAt
+    id
+    comment
+    time
+    value
+    tracker {
+      category {
+        name
+      }
+      name
+      unit {
+        abbreviation
+      }
+    }
+  }
+}

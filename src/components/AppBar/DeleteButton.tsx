@@ -1,11 +1,11 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import useAtom from "data/state/recoil";
+import { useAtom } from "data/state/recoil";
 import { useEntityMutation } from "data/graphql/hooks";
 import pluralize from "pluralize";
 import { useEntityPageTuple } from "components/Router";
 
-function DeleteButton() {
+export function DeleteButton() {
   const [entityType, entityPage] = useEntityPageTuple();
   const [selection] = useAtom.selection();
   const selected = selection[entityType];
@@ -36,5 +36,3 @@ function DeleteButton() {
       </Button>
     );
 }
-
-export default DeleteButton;

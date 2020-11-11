@@ -3,16 +3,16 @@ import React, { FC } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useRoutes } from "react-router-dom";
 import { Navigate, NavigateProps, Outlet, useMatch, useParams } from "react-router";
-import Journal from "components/entities/Journal";
-import CreateEntity from "components/entities/CreateEntity";
-import EditEntity from "components/entities/EditEntity";
-import EntityTable from "components/entities/EntityTable";
-import { entityTypeKs, TentityTypeK } from "config/entity";
+import { EntityTemplate } from "components/entities/EntityTemplate";
+import { CreateEntity } from "components/entities/CreateEntity";
+import { UpdateEntity } from "components/entities/UpdateEntity";
+import { EntityTable } from "components/entities/EntityTable";
+import { entityTypeKs, TentityTypeK } from "config/entities";
 import { useNavigate } from "react-router-dom";
 
 export type TpathTuple = [ string?, string? ];
 
-export const entityPageKs = [ "list", "create", "edit" ] as const;
+export const entityPageKs = [ "list", "create", "update" ] as const;
 
 export type TentityPageK = typeof entityPageKs[number];
 
@@ -59,13 +59,14 @@ export function useIsCurrentLocationAnEntityPage() {
 const entityPageComponent: Record<TentityPageK, FC<{}>> = {
   list: EntityTable,
   create: CreateEntity,
-  edit: EditEntity,
+  update: UpdateEntity,
 }
 
-function EntityPage() {
+function EntityPageComponent() {
   const pathTuple = useEntityPageTuple();
-  const EntityPageComponent = entityPageComponent[pathTuple[1]];
-  return <EntityPageComponent />
+  const entityPageK = pathTuple[1];
+  const Component = entityPageComponent[entityPageK];
+  return <Component />
 }
 
 function Redirect(props: NavigateProps) {
@@ -76,7 +77,7 @@ function Routes() {
   return useRoutes([
     {
       path: "/",
-      element: <Journal />,
+      element: <EntityTemplate />,
       children: [
         {
           path: "/",
@@ -92,7 +93,7 @@ function Routes() {
             },
             {
               path: ":entityPage",
-              element: <EntityPage/>,
+              element: <EntityPageComponent/>,
             },
           ],
         },
@@ -101,14 +102,12 @@ function Routes() {
   ]);
 };
 
-function AppRouter () {
+export function Router () {
   return (
     <BrowserRouter>
       <Routes />
     </BrowserRouter>
   );
 }
-
-export default AppRouter;
 
             

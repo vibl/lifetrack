@@ -1,0 +1,15 @@
+query {
+  list: trackersList {
+    id
+    name
+    entriesList {
+      id
+    }
+    unit {
+      abbreviation
+    }
+    category {
+      name
+    }
+  }
+}

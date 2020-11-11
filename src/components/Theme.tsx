@@ -9,7 +9,7 @@ const theme = createMuiTheme({
   },
 });
 
-const Theme: FC<{}> = ({ children }) => {
+export const Theme: FC<{}> = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -17,5 +17,3 @@ const Theme: FC<{}> = ({ children }) => {
     </ThemeProvider>
   );
 }
-
-export default Theme;

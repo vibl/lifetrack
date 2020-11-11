@@ -1,0 +1,12 @@
+mutation CreateEntry($input: CreateEntryInput!) {
+  createEntry(input: $input) {
+    clientMutationId
+    entry {
+      id
+      time
+      comment
+      value
+      trackerId
+    }
+  }
+}

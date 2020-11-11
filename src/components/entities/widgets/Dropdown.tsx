@@ -1,17 +1,17 @@
 import React from "react";
 import { Controller } from "react-hook-form";
-import { gql, useQuery } from "@apollo/client";
+import { DocumentNode, gql, useQuery } from "@apollo/client";
 import { TextField } from "@material-ui/core";
-import { Tfield } from "config/entity";
+import { Tfield } from "config/entities";
 import Autocomplete, { AutocompleteProps } from "@material-ui/lab/Autocomplete";
 import { sortBy } from "lodash";
 import { DropdownOptionT } from "../CreateEntity";
 
-function Dropdown(
+export function Dropdown(
   props: { field: Tfield; } &
     Partial<AutocompleteProps<DropdownOptionT, false, false, false>>) {
   const { field } = props;
-  const { loading, error, data } = useQuery(gql(field.dropdown as string));
+  const { loading, error, data } = useQuery(field.dropdown as DocumentNode);
   const options = React.useMemo(() => {
     const list = data?.list;
     return sortBy(list, ["name"]);
@@ -40,5 +40,3 @@ function Dropdown(
       )} />
   );
 }
-
-export default Dropdown;

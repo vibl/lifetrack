@@ -1,4 +1,4 @@
-import { TentityTypeK, entityTypeKs } from "config/entity";
+import { TentityTypeK, entityTypeKs } from "config/entities";
 
 export type SelectionAtom = Record<TentityTypeK, number[]>;
 

@@ -1,0 +1,18 @@
+mutation DeleteTracker($input: DeleteTrackerInput!) {
+  deleteTracker(input: $input) {
+    clientMutationId
+    entity: tracker {
+      id
+      name
+      entriesList {
+        id
+      }
+      unit {
+        abbreviation
+      }
+      category {
+        name
+      }
+    }
+  }
+}

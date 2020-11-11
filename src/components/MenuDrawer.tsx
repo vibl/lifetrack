@@ -1,4 +1,3 @@
-import useAtom from "data/state/recoil";
 import React, { FC } from "react";
 import {
   Drawer,
@@ -10,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { ChevronLeft } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { useAtom } from "data/state/recoil";
 
 type MenuItemProp = {
   to: string;
@@ -18,23 +18,21 @@ type MenuItemProp = {
 
 type MenuDrawerProps = DrawerProps & { menuItemProps: MenuItemProp[] };
 
-const MenuDrawer: FC<MenuDrawerProps> = ({ menuItemProps, ...props }) => {
+export function MenuDrawer({ menuItemProps, ...props }: MenuDrawerProps) {
   const [isOpen, setIsOpen] = useAtom.drawer();
 
   return (
-    <Drawer variant="temporary" anchor="left" open={isOpen} onClose={() => setIsOpen(false)} {...props} >
+    <Drawer variant="temporary" anchor="left" open={isOpen} onClose={() => setIsOpen(false)} {...props}>
       <IconButton onClick={() => setIsOpen(false)}>
         <ChevronLeft />
       </IconButton>
       <List>
-        { menuItemProps.map(({to, text}) => 
-            <ListItem key={to} button component={Link} to={to} onClick={() => setIsOpen(false)} >
-              <ListItemText primary={text} />
-            </ListItem>
-        )}
+        {menuItemProps.map(({ to, text }) => (
+          <ListItem key={to} button component={Link} to={to} onClick={() => setIsOpen(false)}>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
       </List>
     </Drawer>
   );
-};
-
-export default MenuDrawer;
+}

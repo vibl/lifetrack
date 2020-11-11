@@ -50,7 +50,7 @@ function Field(props: { field: Tfield; inputRef: any }) {
   );
 }
 
-export function CreateEntity() {
+export function UpdateEntity() {
   const [entityType] = useEntityPageTuple();
   const goTo = useGoTo();
 
@@ -61,12 +61,12 @@ export function CreateEntity() {
   const formMethods = useForm();
   const { register, handleSubmit, reset } = formMethods;
 
-  const createEntity = useEntityMutation(
-    "create",
+  const updateEntity = useEntityMutation(
+    "update",
     entityType,
     onMutationCompleted
   );
-  if (!createEntity) return <div>Config not found for this mutation</div>;
+  if (!updateEntity) return <div>Config not found for this mutation</div>;
 
   const fields = config.fields;
   const inputFields = fields.filter((field) => field.input);
@@ -79,7 +79,7 @@ export function CreateEntity() {
     const data = mapObjIndexed(convertValue, entryData);
     console.log("Submitted data:", data);
 
-    createEntity({ [entityType]: data });
+    updateEntity({ [entityType]: data });
     goTo([, "list" ]);
     reset();
   };
