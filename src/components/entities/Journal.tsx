@@ -2,11 +2,11 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { Container, Grid, Paper } from "@material-ui/core";
 import { upperFirst } from "lodash";
-import { entityTypeIds } from "config/entity";
+import { entityTypeKs } from "config/entity";
 import AppBar from "components/AppBar";
 import MenuDrawer from "components/MenuDrawer";
 
-const menuItemProps = entityTypeIds.map( id => (
+const menuItemProps = entityTypeKs.map( id => (
   {
     to: id,
     text: upperFirst(id),

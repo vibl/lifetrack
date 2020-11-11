@@ -1,12 +1,14 @@
 import React, { FC } from "react";
 import memoize from "lodash/memoize";
-import { DataGrid, SelectionChangeParams, SortDirection } from '@material-ui/data-grid';
+import { DataGrid, SelectionChangeParams } from '@material-ui/data-grid';
 import { gql, useQuery } from "@apollo/client";
-import entityConfig, { EntityTypeId, Field } from "config/entity";
-import { useRoute } from "util/router";
+import entitiesConfig, { Tfield } from "config/entity";
+import useAtom from "data/state/recoil";
+import { SelectionAtom } from "data/state/atoms/selection";
+import { useEntityPageTuple } from "components/Router";
 
 const getColumns = memoize(
-  (fields: Field[]) => 
+  (fields: Tfield[]) => 
     fields
       .filter( field => field.header )
       .map( field => ({
@@ -20,20 +22,16 @@ const getColumns = memoize(
 
 const EntityTable: FC = () => {
 
-  const { entityType } = useRoute();
-
-  const config = entityConfig[entityType];
-
-  const { loading, error, data } = useQuery(gql(config.queries.list));
-
-  console.log("data", data);
-
+  const [entityType] = useEntityPageTuple();
+  const [selection, setSelection] = useAtom.selection();
+  const config = entitiesConfig[entityType];
+  const { loading, error, data } = useQuery(gql(config.gql.list));
   const columns = getColumns(config.fields);
 
   const rowsData = React.useMemo(
     () => data?.list?.map(
         (obj: any) => config.fields.reduce(
-          (acc, field: Field) =>  ({...acc, id: obj.id, [field.id]: field.get ? field.get(obj) : obj[field.id]})
+          (acc, field: Tfield) =>  ({...acc, id: obj.id, [field.id]: field.get ? field.get(obj) : obj[field.id]})
       , {}))
     , [data, config]);
 
@@ -41,25 +39,25 @@ const EntityTable: FC = () => {
     .filter( field => field.sort)
     .map( (field) => ({ field: field.id, sort: field.sort }));
     
-  console.log("rowsData", rowsData);
-
-  console.log('columns', columns);
-
   if (loading || !rowsData ) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
   const onSelection = (selected: SelectionChangeParams) => {
-    console.log("selected", selected);
+    const selection = selected.rows.map( o => Number(o.id) );
+    setSelection( (sel: SelectionAtom) => ({ ...sel, [entityType]: selection }) );
   }
+  console.log("rowsData", rowsData);
+
   return (
      <div style={{ width: '100%' }}>
        <DataGrid 
         columns={columns} 
         rows={rowsData} 
+        rowCount={rowsData.length}
         sortModel={sortModel}
         onSelectionChange={onSelection}
         autoHeight
-        autoPageSize
+        pageSize={20}
         checkboxSelection
         disableExtendRowFullWidth
       />

@@ -2,37 +2,70 @@
 import React, { FC } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useRoutes } from "react-router-dom";
-import { Navigate, NavigateProps, Outlet, useParams } from "react-router";
+import { Navigate, NavigateProps, Outlet, useMatch, useParams } from "react-router";
 import Journal from "components/entities/Journal";
 import CreateEntity from "components/entities/CreateEntity";
 import EditEntity from "components/entities/EditEntity";
 import EntityTable from "components/entities/EntityTable";
-import { ActionId, EntityTypeId, entityTypeIds } from "config/entity";
-import useRecoil from "data/state/recoil";
+import { entityTypeKs, TentityTypeK } from "config/entity";
+import { useNavigate } from "react-router-dom";
 
-const actionComponent: Record<ActionId, FC<{}>> = {
+export type TpathTuple = [ string?, string? ];
+
+export const entityPageKs = [ "list", "create", "edit" ] as const;
+
+export type TentityPageK = typeof entityPageKs[number];
+
+export type TentityPageTuple = [ TentityTypeK, TentityPageK ];
+
+export function usePathTo() {
+  const [ oldEntityType, oldEntityPage ] = useEntityPageTuple();
+  return ([ entityType, entityPage ]: Partial<TentityPageTuple>) => {
+    return `/${entityType ?? oldEntityType}/${entityPage ?? oldEntityPage ?? ""}`
+  }
+}
+
+export function useGoTo() {
+  const pathTo = usePathTo();
+  const navigate = useNavigate();
+  return (entityPageTuple: Partial<TentityPageTuple>) => {
+    navigate(pathTo(entityPageTuple), { replace: true });
+  }
+}
+
+export function usePathTuple(): TpathTuple {
+  const match = useMatch(":param1/:param2");
+  return [ match?.params?.param1, match?.params?.param2 ];
+}
+
+export function isEntityPageTuple(path: TpathTuple): path is TentityPageTuple {
+  return entityTypeKs.includes(path[0] as TentityTypeK) 
+    && entityPageKs.includes(path[1] as TentityPageK)
+}
+
+export function useEntityPageTuple(): TentityPageTuple {
+  const pathTuple = usePathTuple();
+  if( !isEntityPageTuple(pathTuple) ) {
+    throw new Error("pathTuple is not a TentityPageTuple")
+  }
+  return pathTuple
+}
+
+export function useIsCurrentLocationAnEntityPage() {
+  const pathTuple = usePathTuple();
+  return isEntityPageTuple(pathTuple)
+}
+
+const entityPageComponent: Record<TentityPageK, FC<{}>> = {
   list: EntityTable,
   create: CreateEntity,
   edit: EditEntity,
 }
 
-function useUpdateRoute (entityType: EntityTypeId, action: ActionId) {
-  const [route, setRoute] = useRecoil.route();
-  if( 
-    ( entityType && route.entityType !== entityType ) 
-    || ( action && route.action !== action ) 
-  ) {
-    setRoute({ entityType, action });
-  }
-}
-
-function Action() {
-  const params = useParams();
-  const entityType = params.entityType as EntityTypeId;
-  const action = params.action as ActionId;
-  useUpdateRoute(entityType, action);
-  const ActionComponent = actionComponent[action];
-  return <ActionComponent />
+function EntityPage() {
+  const pathTuple = useEntityPageTuple();
+  const EntityPageComponent = entityPageComponent[pathTuple[1]];
+  return <EntityPageComponent />
 }
 
 function Redirect(props: NavigateProps) {
@@ -47,7 +80,7 @@ function Routes() {
       children: [
         {
           path: "/",
-          element: <Redirect to="/category/create" />,
+          element: <Redirect to="/unit/list" />,
         },
         {
           path: `:entityType`,
@@ -58,8 +91,8 @@ function Routes() {
               element: <Redirect to="list" />,
             },
             {
-              path: ":action",
-              element: <Action/>,
+              path: ":entityPage",
+              element: <EntityPage/>,
             },
           ],
         },

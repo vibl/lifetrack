@@ -1,4 +1,4 @@
-import useRecoil from "data/state/recoil";
+import useAtom from "data/state/recoil";
 import React, { FC } from "react";
 import {
   Drawer,
@@ -19,7 +19,7 @@ type MenuItemProp = {
 type MenuDrawerProps = DrawerProps & { menuItemProps: MenuItemProp[] };
 
 const MenuDrawer: FC<MenuDrawerProps> = ({ menuItemProps, ...props }) => {
-  const [isOpen, setIsOpen] = useRecoil.drawer();
+  const [isOpen, setIsOpen] = useAtom.drawer();
 
   return (
     <Drawer variant="temporary" anchor="left" open={isOpen} onClose={() => setIsOpen(false)} {...props} >

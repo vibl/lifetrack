@@ -1,84 +1,102 @@
 import React, { FC } from "react";
-import { useForm } from "react-hook-form";
-import { gql, useMutation } from "@apollo/client";
-import { Box, Button, Card, TextField, TextFieldProps } from "@material-ui/core";
-import entityConfig, { EntityTypeId, FieldType } from "config/entity";
+import { FormProvider, useForm } from "react-hook-form";
+import {
+  Box,
+  Button,
+  Card,
+  TextField,
+  TextFieldProps,
+} from "@material-ui/core";
+import entitiesConfig, { Tfield, TfieldType } from "config/entity";
 import { indexBy, mapObjIndexed, prop } from "ramda";
-import { useGoTo, useRoute } from "util/router";
+import DateTimePicker from "./widgets/DateTimePicker";
+import Dropdown from "./widgets/Dropdown";
+import { useEntityMutation } from "data/graphql/hooks";
+import { useEntityPageTuple, useGoTo } from "components/Router";
+import { FetchResult } from "@apollo/client";
 
-type Action = "create";
-
-const useEntityMutation = (action:Action, entityType: EntityTypeId, onMutationCompleted: any) => {
-  const mutation = entityConfig[entityType].mutation[action];
-  const [apolloMutationFn] = useMutation(gql(mutation), {
-    onCompleted: onMutationCompleted,
-  });
-  const createEntity = (data: any) =>
-    apolloMutationFn({ variables: { input: { [entityType]: data } } });
-  return createEntity;
-};
-
-type FieldComponentIndex = Record<FieldType, typeof TextField>
+type FieldComponentIndex = Record<
+  TfieldType,
+  FC | typeof TextField | typeof Dropdown | typeof DateTimePicker
+>;
 
 const fieldComponent: FieldComponentIndex = {
   string: TextField,
-  number: (props: TextFieldProps) => <TextField {...props}  type="number" />,
-  boolean: TextField,  
-  date: TextField,
+  number: NumberField,
+  boolean: TextField,
+  date: DateTimePicker,
+  relation: Dropdown,
 };
 
-type Props = {
-  entityType: EntityTypeId;
+export type DropdownOptionT = {
+  id: number;
+  name: string;
 };
+
+function NumberField(props: TextFieldProps) {
+  return <TextField {...props} type="number" />;
+}
+
+function Field(props: { field: Tfield; inputRef: any }) {
+  const { field } = props;
+  const FieldComponent = fieldComponent[field.type];
+  return (
+    <FieldComponent
+      name={field.id}
+      label={field.header}
+      variant="outlined"
+      {...props}
+    />
+  );
+}
 
 function CreateEntityForm() {
-
-  const { entityType } = useRoute();
+  const [entityType] = useEntityPageTuple();
   const goTo = useGoTo();
-  
-  const config = entityConfig[entityType];
-  const onMutationCompleted = (data: any) => {
-    alert("Entity created: \n" + JSON.stringify(data));
-  };
-  const { register, handleSubmit, reset } = useForm();
 
-  const entityMutation = useEntityMutation("create", entityType, onMutationCompleted);
-  if( !entityMutation ) return <div>Config not found for this mutation</div>;
+  const config = entitiesConfig[entityType];
+  const onMutationCompleted = (data: FetchResult) => {
+    console.log("Entity created:", data);
+  };
+  const formMethods = useForm();
+  const { register, handleSubmit, reset } = formMethods;
+
+  const createEntity = useEntityMutation(
+    "create",
+    entityType,
+    onMutationCompleted
+  );
+  if (!createEntity) return <div>Config not found for this mutation</div>;
 
   const fields = config.fields;
-  const inputFields = fields.filter(field => field.input);
+  const inputFields = fields.filter((field) => field.input);
   const field = indexBy(prop("id"), fields);
 
-  const convertValue = (val: string, key: string) => field[key].type === "number" ? Number(val) : val;
+  const convertValue = (val: string, key: string) =>
+    field[key].type === "number" ? Number(val) : val;
 
   const onSubmit = (entryData: Record<string, string>) => {
-    console.log("Submitted data:", entryData);
-    const data = mapObjIndexed( convertValue, entryData);
-    entityMutation(data);
-    goTo({ action: "list" });
+    const data = mapObjIndexed(convertValue, entryData);
+    console.log("Submitted data:", data);
+
+    createEntity({ [entityType]: data });
+    goTo([, "list" ]);
     reset();
   };
   return (
     <Box p={1} clone>
       <Card>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {inputFields.map((field) => {
-            const FieldComponent = fieldComponent[field.type];
-            return (
-              <FieldComponent
-                key={field.id}
-                name={field.id}
-                label={field.header}
-                inputRef={register}
-                variant="outlined"
-              />
-            );
-          })}
-          <Button type="submit">Create</Button>
-        </form>
+        <FormProvider {...formMethods}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {inputFields.map((field) => (
+              <Field key={field.id} field={field} inputRef={register} />
+            ))}
+            <Button type="submit">Create</Button>
+          </form>
+        </FormProvider>
       </Card>
     </Box>
   );
-};
+}
 
 export default CreateEntityForm;

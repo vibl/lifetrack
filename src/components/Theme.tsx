@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
-import "./App.css";
 import "fontsource-roboto";
 
 const theme = createMuiTheme({

@@ -34,10 +34,10 @@
     ],
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
   ],
   "exclude": [
-    "./inspiration/**/*", ".archive"
+    "./inspiration/**/*", ".archive/**/*", "./.vscode/**/*"
   ],
   "typeAcquisition": {
     "enable": true
