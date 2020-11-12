@@ -20,6 +20,7 @@ export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
     trackerId: {
       label: "Tracker",
       type: "number",  
+      defaultValue: 1,
       width: 200,
       dropdown: gql`
         {

@@ -1,26 +1,38 @@
 import React from "react";
 import { Controller } from "react-hook-form";
-import { DocumentNode, gql, useQuery } from "@apollo/client";
+import { DocumentNode, useQuery } from "@apollo/client";
 import { TextField } from "@material-ui/core";
-import { TFormFieldConfig } from "config/entities";
 import Autocomplete, { AutocompleteProps } from "@material-ui/lab/Autocomplete";
 import { sortBy } from "lodash";
-import { DropdownOptionT } from "../CreateEntity";
+import { TFormFieldConfig } from "config/entities";
+
+export type DropdownOptionT = {
+  id: number;
+  name: string;
+};
 
 export function Dropdown(
-  props: { field: TFormFieldConfig, name: string } &
-    Partial<AutocompleteProps<DropdownOptionT, false, false, false>>) {
-  const { field, name } = props;
-  const { loading, error, data } = useQuery(field.dropdown as DocumentNode);
-  const options = React.useMemo(() => {
-    const list = data?.list;
-    return sortBy(list, ["name"]);
-  }, [data]);
-  const defaultValue = options && options[0];
-  if (loading || !options)
+  { fieldO, ...props }: 
+  { fieldO: TFormFieldConfig, name: string } 
+    & Partial<AutocompleteProps<DropdownOptionT, false, false, false>>
+  ) {
+  const { name } = props;
+  const { loading, error, data } = useQuery(fieldO.dropdown as DocumentNode);
+
+  const options = React.useMemo(
+    () => {
+      const list = data?.list;
+      return sortBy(list, ["name"]);
+    }
+  , [data]);
+
+  if (loading || !options) {
     return <p>Loading...</p>;
-  if (error)
+  }
+  if (error) {
     return <p>Error :(</p>;
+  }
+  const defaultValue = options.find(o => o.id === props.defaultValue );
   return (
     <Controller
       name={name}
@@ -29,13 +41,13 @@ export function Dropdown(
         <Autocomplete
           autoComplete={true}
           options={options}
-          getOptionLabel={(option) => option.name}
+          getOptionLabel={option => option.name}
+          getOptionSelected={(option, value) => option.id === value.id}
           style={{ width: 300 }}
           renderInput={(params) => (
-            <TextField {...params} label="Combo box" variant="outlined" />
+            <TextField {...params} label={fieldO.label} variant="outlined" />
           )}
           defaultValue={defaultValue}
-          {...props}
           onChange={(e, option) => option && onChange(option) } />
       )} />
   );

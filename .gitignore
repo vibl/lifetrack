@@ -29,4 +29,4 @@ inspiration/
 server/
 dist/
 
-src/tailwind.output.css
+src/tailwind.out.css

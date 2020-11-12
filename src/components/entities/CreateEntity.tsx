@@ -1,47 +1,43 @@
-import React, { FC, useCallback, useEffect, useMemo } from "react";
+import React, { FC, useCallback } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import {
   Box,
   Button,
   Card,
+  Checkbox,
   TextField,
   TextFieldProps,
 } from "@material-ui/core";
 import { entitiesConfigC, TFormFieldConfig, TFieldType, defaultDefaultValueO } from "config/entities";
-import { map, mapObjIndexed } from "ramda";
-import { DateTimePicker } from "./widgets/DateTimePicker";
+import { mapObjIndexed } from "ramda";
+import { TimePicker } from "./widgets/TimePicker";
 import { Dropdown } from "./widgets/Dropdown";
 import { useEntityMutation } from "data/graphql/hooks";
 import { useEntityPageTuple, useGoTo } from "components/Router";
 import { FetchResult } from "@apollo/client";
-import { TObject } from "util/types";
-import { isEqual } from "lodash";
 
 type FieldComponentIndex = Record<
   TFieldType,
-  FC | typeof TextField | typeof Dropdown | typeof DateTimePicker
+  FC | typeof TextField | typeof Checkbox | typeof Dropdown | typeof TimePicker
 >;
 
 const fieldComponent: FieldComponentIndex = {
-  string: TextField,
+  string: TextFieldSafe,
   number: NumberField,
-  boolean: TextField,
-  date: DateTimePicker,
+  boolean: Checkbox,
+  date: TimePicker,
 };
 
-function getFieldComponent(field: TFormFieldConfig) {
-  return field.dropdown
+function getFieldComponent(fieldO: TFormFieldConfig) {
+  return fieldO.dropdown
     ? Dropdown
-    : fieldComponent[field.type];
+    : fieldComponent[fieldO.type];
 }
-
-export type DropdownOptionT = {
-  id: number;
-  name: string;
-};
-
-function NumberField(props: TextFieldProps) {
+function NumberField({fieldO, ...props}: { fieldO:TFormFieldConfig } & TextFieldProps ) {
   return <TextField {...props} type="number" />;
+}
+function TextFieldSafe({fieldO, ...props}: { fieldO:TFormFieldConfig } & TextFieldProps ) {
+  return <TextField {...props} />;
 }
 
 export function CreateEntity() {
@@ -49,12 +45,10 @@ export function CreateEntity() {
   const goTo = useGoTo();
 
   const { sequenceA, fieldC }  = entitiesConfigC[entityType].create;
-  console.log('fieldC:', fieldC)
 
   const formMethodsO = useForm();
-  const { getValues, handleSubmit, register, reset, setValue, watch } = formMethodsO;
+  const { handleSubmit, register, reset, setValue, watch } = formMethodsO;
   const inputValueO = watch();
-  console.log('inputValueO:', inputValueO)
   
   const createEntity = useEntityMutation(
     "create",
@@ -73,7 +67,7 @@ export function CreateEntity() {
         }
         return fieldO.defaultValue ?? defaultDefaultValueO[fieldO.type]; 
       }
-  , [inputValueO] );
+  , [inputValueO, setValue] );
 
 
   function onMutationCompleted(data: FetchResult) {
@@ -82,20 +76,18 @@ export function CreateEntity() {
 
   function convertValue(val: any, key: string) {
     const fieldO = fieldC[key];
-    console.log('fieldO:', fieldO)
-    console.log('val:', val)
     return fieldO.dropdown
       ? val.id
       : fieldO.type === "number" 
         ? Number(val) 
         : val;
   }
-
-  function onSubmit(entryDataC: Record<string, string>) {
-    console.log('entryDataC:', entryDataC)
-    const dataC = mapObjIndexed(convertValue, entryDataC);
-    console.log("Submitted data:", dataC);
-    createEntity({ [entityType]: dataC });
+  
+  function onSubmit(entryDataO: Record<string, any>) {
+    const submittedDataO = mapObjIndexed(convertValue, entryDataO);
+    console.log('entryDataC:', entryDataO);
+    console.log("submittedDataO:", submittedDataO);
+    createEntity({ [entityType]: submittedDataO });
     goTo([, "list"]);
     reset();
   }
@@ -107,7 +99,6 @@ export function CreateEntity() {
           <form onSubmit={handleSubmit(onSubmit)}>
             {sequenceA.map( fieldId => {
                 const fieldO = fieldC[fieldId];
-                console.log('fieldO:', fieldO)
                 const FieldComponent = getFieldComponent(fieldO);
                 return (
                   <FieldComponent
@@ -115,15 +106,15 @@ export function CreateEntity() {
                     name={fieldId}
                     label={fieldO.label}
                     variant="outlined"
-                    field={fieldO}
+                    fieldO={fieldO}
                     defaultValue={getDefaultValue(fieldId, fieldO)}
-                    inputRef={register}
                     disabled={fieldO.noInput}
+                    inputRef={register}
                     InputLabelProps={{ shrink: fieldO.noInput }}
                   />
                 );
               })}
-            <Button type="submit">Create</Button>
+            <Button type="submit" color="inherit">Create</Button>
           </form>
         </FormProvider>
       </Card>

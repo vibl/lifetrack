@@ -13,6 +13,7 @@ export function CreateButton() {
       <Button
         component={Link}
         to={pathTo([, "create" ])}
+        color="inherit"
       >
         Create {entityType}
       </Button>

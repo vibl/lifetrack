@@ -18,6 +18,7 @@ export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
     },
     unitId: {
       width: 200,
+      defaultValue: 5,
       dropdown: gql`
         {
           list: unitsList {
@@ -29,6 +30,7 @@ export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
     },
     categoryId: {
       width: 200,
+      defaultValue: 3,
       dropdown: gql`
         {
           list: categoriesList {
@@ -42,5 +44,3 @@ export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
 };
 
 export const form = mergeDeepRight(base, spec);
-console.log('tracker form:', form)
-

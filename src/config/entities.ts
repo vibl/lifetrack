@@ -5,7 +5,7 @@ import * as entry from "./entry";
 import * as tracker from "./tracker";
 import * as category from "./category";
 import * as unit from "./unit";
-import { Index, TObject, TValue } from "util/types";
+import { Index, TNotFunction, TObject, TValue } from "util/types";
 
 export const entityTypeKs = ["entry", "tracker", "category", "unit"] as const;
 
@@ -36,7 +36,7 @@ export type TListSpecConfig = Partial<TBaseFieldConfig> & {
 export type TListFieldConfig = TBaseFieldConfig & TListSpecConfig;
 
 export type TFormSpecConfig = Partial<TBaseFieldConfig> & {
-  defaultValue?: TValue | ( (o: TObject) => any ),
+  defaultValue?: TNotFunction | ( (o: TObject) => any ),
   validation?: z.ZodString | z.ZodNumber | z.ZodTransformer<any, any>,
   dropdown?: DocumentNode,
   noInput?: boolean,

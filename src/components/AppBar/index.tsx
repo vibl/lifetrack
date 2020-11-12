@@ -11,7 +11,7 @@ import pluralize from "pluralize";
 function EntityPageTitle() {
   const [entityType, entityPage] = useEntityPageTuple();
   return (
-    <Typography variant="h6" className="flex-grow">
+    <Typography variant="h6" className="flex-grow" >
       {upperFirst(entityPage)} {entityPage === "list" ? pluralize(entityType) : entityType}
     </Typography>
   )

@@ -5,7 +5,7 @@ import "fontsource-roboto";
 const theme = createMuiTheme({
   spacing: 8,
   palette: {
-    type: "dark",
+    mode: "dark",
   },
 });
 

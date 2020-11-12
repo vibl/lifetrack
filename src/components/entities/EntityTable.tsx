@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React from "react";
 import memoize from "lodash/memoize";
 import { CellParams, DataGrid, SelectionChangeParams } from '@material-ui/data-grid';
 import { useQuery } from "@apollo/client";
-import { entitiesConfigC, TBaseFieldConfig, TListFieldConfig } from "config/entities";
+import { entitiesConfigC, TListFieldConfig } from "config/entities";
 import { useAtom } from "data/state/recoil";
 import { SelectionAtom } from "data/state/atoms/selection";
 import { useEntityPageTuple, useGoTo } from "components/Router";
@@ -13,12 +13,12 @@ const getColumns = memoize(
   (sequenceA: string[], fieldC: Index<TListFieldConfig>) => 
     sequenceA
       .map( fieldId => {
-        const field = fieldC[fieldId];
+        const fieldO = fieldC[fieldId];
         return {
           field: fieldId,
-          headerName: field.label,
-          width: field.width,
-          type: field.type === "date" ? "dateTime" : field.type,
+          headerName: fieldO.label,
+          width: fieldO.width,
+          type: fieldO.type === "date" ? "dateTime" : fieldO.type,
         }
       }
   )
@@ -37,11 +37,11 @@ export function EntityTable() {
     () => dataC?.list?.map(
       (dataObj: any) => sequenceA.reduce(
         (acc, fieldId) => {
-          const field = fieldC[fieldId];
-          return { ...acc, id: dataObj.id, [fieldId]: field.get ? field.get(dataObj) : dataObj[fieldId] }
+          const fieldO = fieldC[fieldId];
+          return { ...acc, id: dataObj.id, [fieldId]: fieldO.get ? fieldO.get(dataObj) : dataObj[fieldId] }
         },
         {})),
-    [dataC, configO]);
+    [dataC, configO, fieldC, sequenceA]);
 
   const sortModelO = sequenceA
     .filter(fieldId => fieldC[fieldId].sort)
@@ -62,7 +62,7 @@ export function EntityTable() {
     }
   }
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ height: 800, width: '100%' }}>
       <DataGrid
         columns={columnC}
         rows={rowC}
