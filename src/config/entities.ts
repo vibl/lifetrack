@@ -1,10 +1,11 @@
 import { SortDirection } from "@material-ui/data-grid";
 import { DocumentNode } from "graphql";
 import * as z from "zod";
-import { entityConfig as entry } from "./entry";
-import { entityConfig as tracker } from "./tracker";
-import { entityConfig as category } from "./category";
-import { entityConfig as unit } from "./unit";
+import * as entry from "./entry";
+import * as tracker from "./tracker";
+import * as category from "./category";
+import * as unit from "./unit";
+import { Index } from "util/types";
 
 export const entityTypeKs = ["entry", "tracker", "category", "unit"] as const;
 
@@ -19,26 +20,43 @@ export const defaults = {
   number: 0,
   boolean: false,
   date: () => new Date(),
-  relation: null,
 };
 
 export type TfieldType = keyof typeof defaults;
 
-export type Tfield = {
-  id: string;
+export type TbaseFieldConfig = {
   type: TfieldType;
-  header?: string;
-  width?: number;
+  label: string;
+};
+export type TlistSpecConfig = {
+  label?: string,
+  width: number;
   sort?: SortDirection;
   get?: (o: any) => any;
-  input?: boolean;
+};
+export type TlistFieldConfig = TbaseFieldConfig & TlistSpecConfig;
+
+export type TformSpecConfig = {
+  label?: string,
+  width: number;
   validation?: z.ZodString | z.ZodNumber | z.ZodTransformer<any, any>;
   dropdown?: DocumentNode;
 };
+export type TformFieldConfig = TbaseFieldConfig & TformSpecConfig;
+
+export type TbaseEntityConfig = {
+  fieldi: Index<TbaseFieldConfig>,
+};
+
+export type TentityPageConfig<T> = {
+  sequence: string[],
+  fieldi: Index<T>,
+};
 
 export type TentityConfig = {
-  gql: Record<TgqlRequestK, DocumentNode>;
-  fields: Tfield[];
+  list: TentityPageConfig<TlistFieldConfig>,
+  create: TentityPageConfig<TformFieldConfig>,
+  update: TentityPageConfig<TformFieldConfig>,
 };
 
 export const entitiesConfig: Record<TentityTypeK, TentityConfig> = {

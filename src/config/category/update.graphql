@@ -1,9 +1,0 @@
-mutation UpdateCategory($input: UpdateCategoryInput!) {
-  updateCategory(input: $input) {
-    clientMutationId
-    category {
-      id
-      name
-    }
-  }
-}

@@ -1,8 +1,0 @@
-mutation DeleteUnit($input: DeleteUnitInput!) {
-  deleteUnit(input: $input) {
-    clientMutationId
-    entity: unit {
-      id
-    }
-  }
-}

@@ -1,8 +1,0 @@
-mutation DeleteEntry($input: DeleteEntryInput!) {
-  deleteEntry(input: $input) {
-    clientMutationId
-    entity: entry {
-      id
-    }
-  }
-}

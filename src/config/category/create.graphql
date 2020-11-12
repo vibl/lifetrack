@@ -1,9 +1,0 @@
-mutation CreateCategory($input: CreateCategoryInput!) {
-  createCategory(input: $input) {
-    clientMutationId
-    category {
-      id
-      name
-    }
-  }
-}

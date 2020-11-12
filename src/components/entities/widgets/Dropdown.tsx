@@ -2,15 +2,15 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import { DocumentNode, gql, useQuery } from "@apollo/client";
 import { TextField } from "@material-ui/core";
-import { Tfield } from "config/entities";
+import { TformFieldConfig } from "config/entities";
 import Autocomplete, { AutocompleteProps } from "@material-ui/lab/Autocomplete";
 import { sortBy } from "lodash";
 import { DropdownOptionT } from "../CreateEntity";
 
 export function Dropdown(
-  props: { field: Tfield; } &
+  props: { field: TformFieldConfig; name: string } &
     Partial<AutocompleteProps<DropdownOptionT, false, false, false>>) {
-  const { field } = props;
+  const { field, name } = props;
   const { loading, error, data } = useQuery(field.dropdown as DocumentNode);
   const options = React.useMemo(() => {
     const list = data?.list;
@@ -23,7 +23,7 @@ export function Dropdown(
     return <p>Error :(</p>;
   return (
     <Controller
-      name={field.id}
+      name={name}
       defaultValue={defaultValue.id}
       render={({ onChange }) => (
         <Autocomplete

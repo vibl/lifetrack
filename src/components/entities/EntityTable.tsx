@@ -2,21 +2,25 @@ import React, { FC } from "react";
 import memoize from "lodash/memoize";
 import { CellParams, DataGrid, SelectionChangeParams } from '@material-ui/data-grid';
 import { useQuery } from "@apollo/client";
-import { entitiesConfig, Tfield } from "config/entities";
+import { entitiesConfig, TbaseFieldConfig, TlistFieldConfig } from "config/entities";
 import { useAtom } from "data/state/recoil";
 import { SelectionAtom } from "data/state/atoms/selection";
 import { useEntityPageTuple, useGoTo } from "components/Router";
+import { entityGql } from "data/graphql/entities";
+import { Index } from "util/types";
 
 const getColumns = memoize(
-  (fields: Tfield[]) => 
-    fields
-      .filter( field => field.header )
-      .map( field => ({
-        field: field.id,
-        headerName: field.header,
-        width: field.width,
-        type: field.type === "date" ? "dateTime" : field.type,
-      })
+  (sequence: string[], fieldi: Index<TlistFieldConfig>) => 
+    sequence
+      .map( fieldId => {
+        const field = fieldi[fieldId];
+        return {
+          field: fieldId,
+          headerName: field.label,
+          width: field.width,
+          type: field.type === "date" ? "dateTime" : field.type,
+        }
+      }
   )
 );
 
@@ -24,20 +28,24 @@ export function EntityTable() {
   const goTo = useGoTo();
   const [entityType] = useEntityPageTuple();
   const [, setSelection] = useAtom.selection();
+  const { loading, error, data } = useQuery(entityGql[entityType].list);
   const config = entitiesConfig[entityType];
-  const { loading, error, data } = useQuery(config.gql.list);
-  const columns = getColumns(config.fields);
+  const { sequence, fieldi } = config.list;
+  const columns = getColumns(sequence, fieldi);
 
   const rowsData = React.useMemo(
     () => data?.list?.map(
-      (obj: any) => config.fields.reduce(
-        (acc, field: Tfield) => ({ ...acc, id: obj.id, [field.id]: field.get ? field.get(obj) : obj[field.id] }),
+      (dataObj: any) => sequence.reduce(
+        (acc, fieldId) => {
+          const field = fieldi[fieldId];
+          return { ...acc, id: dataObj.id, [fieldId]: field.get ? field.get(dataObj) : dataObj[fieldId] }
+        },
         {})),
     [data, config]);
 
-  const sortModel = config.fields
-    .filter(field => field.sort)
-    .map((field) => ({ field: field.id, sort: field.sort }));
+  const sortModel = sequence
+    .filter(fieldId => fieldi[fieldId].sort)
+    .map( fieldId => ({ field: fieldId, sort: fieldi[fieldId].sort }));
 
   if (loading || !rowsData)
     return <p>Loading...</p>;
