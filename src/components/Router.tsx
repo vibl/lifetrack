@@ -7,7 +7,7 @@ import { EntityTemplate } from "components/entities/EntityTemplate";
 import { CreateEntity } from "components/entities/CreateEntity";
 import { UpdateEntity } from "components/entities/UpdateEntity";
 import { EntityTable } from "components/entities/EntityTable";
-import { entityTypeKs, TentityTypeK } from "config/entities";
+import { entityTypeKs, TEntityTypeK } from "config/entities";
 import { useNavigate } from "react-router-dom";
 
 export type TpathTuple = [ string?, string? ];
@@ -16,7 +16,7 @@ export const entityPageKs = [ "list", "create", "update" ] as const;
 
 export type TentityPageK = typeof entityPageKs[number];
 
-export type TentityPageTuple = [ TentityTypeK, TentityPageK ];
+export type TentityPageTuple = [ TEntityTypeK, TentityPageK ];
 
 export function usePathTo() {
   const [ oldEntityType, oldEntityPage ] = useEntityPageTuple();
@@ -39,7 +39,7 @@ export function usePathTuple(): TpathTuple {
 }
 
 export function isEntityPageTuple(path: TpathTuple): path is TentityPageTuple {
-  return entityTypeKs.includes(path[0] as TentityTypeK) 
+  return entityTypeKs.includes(path[0] as TEntityTypeK) 
     && entityPageKs.includes(path[1] as TentityPageK)
 }
 

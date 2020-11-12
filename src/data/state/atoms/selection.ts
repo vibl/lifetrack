@@ -1,6 +1,6 @@
-import { TentityTypeK, entityTypeKs } from "config/entities";
+import { TEntityTypeK, entityTypeKs } from "config/entities";
 
-export type SelectionAtom = Record<TentityTypeK, number[]>;
+export type SelectionAtom = Record<TEntityTypeK, number[]>;
 
 function init() {
 

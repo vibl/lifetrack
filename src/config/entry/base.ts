@@ -1,21 +1,13 @@
 import { SortDirection } from "@material-ui/data-grid";
-import { TbaseEntityConfig } from "config/entities";
+import { TBaseEntityConfig } from "config/entities";
 import { gql } from "graphql.macro";
 
-export const base: TbaseEntityConfig = {
+export const base: TBaseEntityConfig = {
 
-  fieldi: {
+  fieldC: {
     time: {
       label: "Time",
       type: "date",
-    },
-    tracker: {
-      label: "Tracker",
-      type: "string",
-    },
-    trackerId: {
-      label: "Tracker",
-      type: "number",
     },
     value: {
       label: "Value",
@@ -28,14 +20,6 @@ export const base: TbaseEntityConfig = {
     comment: {
       label: "Comment",
       type: "string",
-    },
-    category: {
-      label: "Category",
-      type: "string",
-    },
-    createdAt: {
-      label: "Created at",
-      type: "date",
     },
   },
 };

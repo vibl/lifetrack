@@ -1,30 +1,34 @@
-import { TentityPageConfig, TformSpecConfig } from "config/entities";
+import { TEntityPageConfig, TFormSpecConfig } from "config/entities";
 import { gql } from "graphql.macro";
 import { base } from "./base";
 import { mergeDeepRight } from "ramda";
 
-export const spec: Partial<TentityPageConfig<TformSpecConfig>> = {
+export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
   
-  sequence: [
+  sequenceA: [
     "time",
     "trackerId",
     "value",
     "unit",
     "comment",
-    "createdAt",
   ],
 
-  fieldi: {
+  fieldC: {
     time: {
       width: 300,
     },
     trackerId: {
+      label: "Tracker",
+      type: "number",  
       width: 200,
       dropdown: gql`
         {
           list: trackersList {
             id
             name
+            unit {
+              name
+            }
           }
         }
       `,
@@ -33,7 +37,10 @@ export const spec: Partial<TentityPageConfig<TformSpecConfig>> = {
       width: 100,
     },
     unit: {
+      label: "Unit (from tracker)",
       width: 100,
+      noInput: true,
+      defaultValue: o => o?.trackerId?.unit?.name,
     },
     comment: {
       width: 200,

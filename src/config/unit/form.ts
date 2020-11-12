@@ -1,18 +1,18 @@
 import { SortDirection } from "@material-ui/data-grid";
 import { gql } from "graphql.macro";
 import * as z from "zod";
-import { TentityPageConfig, TformSpecConfig } from "config/entities";
+import { TEntityPageConfig, TFormSpecConfig } from "config/entities";
 import { base } from "./base";
 import { mergeDeepRight } from "ramda";
 
-export const spec: Partial<TentityPageConfig<TformSpecConfig>> = {
-  sequence: [
+export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
+  sequenceA: [
     "name",
     "abbreviation",
     "baseUnit",
     "multiplier",
   ],
-  fieldi: {
+  fieldC: {
     name: {
       width: 200,
       validation: z.string(),

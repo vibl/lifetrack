@@ -1,8 +1,8 @@
 import { DocumentNode } from "graphql";
 import { gql } from "graphql.macro";
-import { TentityTypeK, TgqlRequestK } from "config/entities";
+import { TEntityTypeK, TGqlRequestK } from "config/entities";
 
-export type TentititiesGql = Record<TentityTypeK, Record<TgqlRequestK, DocumentNode>>
+export type TentititiesGql = Record<TEntityTypeK, Record<TGqlRequestK, DocumentNode>>
 
 export const entityGql: TentititiesGql = {
 

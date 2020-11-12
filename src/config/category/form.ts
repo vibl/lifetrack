@@ -1,14 +1,14 @@
-import { TentityPageConfig, TformSpecConfig } from "config/entities";
+import { TEntityPageConfig, TFormSpecConfig } from "config/entities";
 import { base } from "./base";
 import { mergeDeepRight } from "ramda";
 
-export const spec: Partial<TentityPageConfig<TformSpecConfig>> = {
+export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
 
-  sequence: [
+  sequenceA: [
     "name",
   ],
 
-  fieldi: {
+  fieldC: {
     name: {
       width: 300,
     },

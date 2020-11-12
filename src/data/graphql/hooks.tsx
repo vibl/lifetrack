@@ -1,10 +1,10 @@
 import { FetchResult, useMutation } from "@apollo/client";
-import { entitiesConfig, TentityTypeK, TgqlRequestK } from "config/entities";
+import { entitiesConfigC, TEntityTypeK, TGqlRequestK } from "config/entities";
 import { entityGql } from "./entities";
 
 export function useEntityMutation(
-  action: TgqlRequestK,
-  entityType: TentityTypeK,
+  action: TGqlRequestK,
+  entityType: TEntityTypeK,
   onMutationCompleted: any) {
   const mutation = entityGql[entityType][action];
   const [mutate] = useMutation(mutation, {

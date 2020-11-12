@@ -1,17 +1,17 @@
 import { gql } from "graphql.macro";
-import { TentityPageConfig, TformSpecConfig } from "config/entities";
+import { TEntityPageConfig, TFormSpecConfig } from "config/entities";
 import { mergeDeepRight } from "ramda";
 import { base } from "./base";
 
-export const spec: Partial<TentityPageConfig<TformSpecConfig>> = {
+export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
 
-  sequence: [
+  sequenceA: [
     "name",
     "unitId",
     "categoryId",
   ],
 
-  fieldi: {
+  fieldC: {
     name: {
       label: "Name",
       width: 200,

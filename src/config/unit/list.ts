@@ -1,11 +1,11 @@
 import { SortDirection } from "@material-ui/data-grid";
-import { TentityPageConfig, TlistFieldConfig, TlistSpecConfig } from "config/entities";
+import { TEntityPageConfig, TListFieldConfig, TListSpecConfig } from "config/entities";
 import { mergeDeepRight } from "ramda";
 import { base } from "./base";
 
 
-const spec: TentityPageConfig<TlistSpecConfig> = {
-  sequence: [
+const spec: TEntityPageConfig<TListSpecConfig> = {
+  sequenceA: [
     "name",
     "abbreviation",
     "baseUnit",
@@ -13,7 +13,7 @@ const spec: TentityPageConfig<TlistSpecConfig> = {
     "trackersCount",
     "entriesCount",
   ],
-  fieldi: {
+  fieldC: {
     name: {
       width: 200,
       sort: "asc" as SortDirection,
@@ -28,11 +28,11 @@ const spec: TentityPageConfig<TlistSpecConfig> = {
       width: 200,
     },
     trackersCount: {
-      get: (o: any) => o.trackersList.length,
+      get: o => o.trackersList.length,
       width: 200,
     },
     entriesCount: {
-      get: (o: any) =>
+      get: o =>
         o.trackersList.reduce(
           (acc: number, o: any) => acc + o.entriesList.length,
           0
@@ -43,4 +43,4 @@ const spec: TentityPageConfig<TlistSpecConfig> = {
 
 };
 
-export const list = mergeDeepRight(base, spec) as TentityPageConfig<TlistFieldConfig>;
+export const list = mergeDeepRight(base, spec) as TEntityPageConfig<TListFieldConfig>;

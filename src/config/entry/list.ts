@@ -1,10 +1,10 @@
 import { SortDirection } from "@material-ui/data-grid";
-import { TentityPageConfig, TlistFieldConfig, TlistSpecConfig } from "config/entities";
+import { TEntityPageConfig, TListFieldConfig, TListSpecConfig } from "config/entities";
 import { mergeDeepRight } from "ramda";
 import { base } from "./base";
 
-const spec: TentityPageConfig<TlistSpecConfig> = {
-  sequence: [
+const spec: TEntityPageConfig<TListSpecConfig> = {
+  sequenceA: [
     "time",
     "tracker",
     "value",
@@ -13,35 +13,41 @@ const spec: TentityPageConfig<TlistSpecConfig> = {
     "category",
     "createdAt",
   ],
-  fieldi: {
+  fieldC: {
     time: {
       width: 300,
       sort: "desc" as SortDirection,
-      get: (o: any) => new Date(o.time),
+      get: o => new Date(o.time),
     },
     tracker: {
+      label: "Tracker",
+      type: "string",  
       width: 200,
-      get: (o: any) => o.tracker.name,
+      get: o => o.tracker.name,
     },
     value: {
       width: 100,
     },
     unit: {
       width: 100,
-      get: (o: any) => o.tracker.unit.abbreviation,
+      get: o => o.tracker.unit.abbreviation,
     },
     comment: {
       width: 200,
     },
     category: {
+      label: "Category",
+      type: "string",
       width: 200,
-      get: (o: any) => o.tracker.category.name,
+      get: o => o.tracker.category.name,
     },
     createdAt: {
+      label: "Created at",
+      type: "date",
       width: 200,
-      get: (o: any) => new Date(o.createdAt),
+      get: o => new Date(o.createdAt),
     },
   },
 };
 
-export const list = mergeDeepRight(base, spec) as TentityPageConfig<TlistFieldConfig>;
+export const list = mergeDeepRight(base, spec) as TEntityPageConfig<TListFieldConfig>;

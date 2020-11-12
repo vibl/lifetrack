@@ -1,8 +1,8 @@
-import { TbaseEntityConfig } from "config/entities";
+import { TBaseEntityConfig } from "config/entities";
 
-export const base: TbaseEntityConfig = {
+export const base: TBaseEntityConfig = {
 
-  fieldi: {
+  fieldC: {
     name: {
       label: "Tracker",
       type: "string",

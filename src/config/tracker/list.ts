@@ -1,33 +1,33 @@
-import { TentityPageConfig, TlistFieldConfig, TlistSpecConfig } from "config/entities";
+import { TEntityPageConfig, TListFieldConfig, TListSpecConfig } from "config/entities";
 import { mergeDeepRight } from "ramda";
 import { base } from "./base";
 
 
-const spec: TentityPageConfig<TlistSpecConfig> = {
-  sequence: [
+const spec: TEntityPageConfig<TListSpecConfig> = {
+  sequenceA: [
     "name",
     "unit",
     "category",
     "entriesCount",
   ],
-  fieldi: {
+  fieldC: {
     name: {
       width: 200,
     },
     unit: {
       width: 200,
-      get: (o: any) => o.unit.abbreviation,
+      get: o => o.unit.abbreviation,
     },
     category: {
       width: 200,
-      get: (o: any) => o.category.name,
+      get: o => o.category.name,
     },
     entriesCount: {
       width: 200,
-      get: (o: any) => o.entriesList.length,
+      get: o => o.entriesList.length,
     },
   },
 
 };
 
-export const list = mergeDeepRight(base, spec) as TentityPageConfig<TlistFieldConfig>;
+export const list = mergeDeepRight(base, spec) as TEntityPageConfig<TListFieldConfig>;
