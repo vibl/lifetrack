@@ -1,20 +1,22 @@
 import React from "react";
-import { AppBar as MuAppbar, IconButton, Toolbar, Typography } from "@material-ui/core";
+import {
+  AppBar as MuAppbar, IconButton, Toolbar, Typography,
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useAtom } from "data/state/recoil";
-import { CreateButton } from "./CreateButton";
-import { DeleteButton } from "./DeleteButton";
 import { useEntityPageTuple, useIsCurrentLocationAnEntityPage } from "components/Router";
 import { upperFirst } from "lodash";
 import pluralize from "pluralize";
+import { DeleteButton } from "./DeleteButton";
+import { CreateButton } from "./CreateButton";
 
 function EntityPageTitle() {
   const [entityType, entityPage] = useEntityPageTuple();
   return (
-    <Typography variant="h6" className="flex-grow" >
+    <Typography variant="h6" className="flex-grow">
       {upperFirst(entityPage)} {entityPage === "list" ? pluralize(entityType) : entityType}
     </Typography>
-  )
+  );
 }
 
 function EntityBar() {
@@ -24,7 +26,7 @@ function EntityBar() {
       <CreateButton />
       <DeleteButton />
     </>
-  )
+  );
 }
 
 export function AppBar() {
@@ -32,17 +34,17 @@ export function AppBar() {
   const [, setDrawerIsOpen] = useAtom.drawer();
   return (
     <MuAppbar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"   
-            onClick={() => setDrawerIsOpen(true)}  
-          >
-            <MenuIcon />
-          </IconButton>
-          { isCurrentLocationAnEntityPage && <EntityBar/>}
-        </Toolbar>
+      <Toolbar>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={() => setDrawerIsOpen(true)}
+        >
+          <MenuIcon />
+        </IconButton>
+        { isCurrentLocationAnEntityPage && <EntityBar />}
+      </Toolbar>
     </MuAppbar>
   );
 }

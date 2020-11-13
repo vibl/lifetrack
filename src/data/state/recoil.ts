@@ -1,4 +1,4 @@
-import { atom, SetterOrUpdater, useRecoilState } from 'recoil';
+import { atom, SetterOrUpdater, useRecoilState } from "recoil";
 import atomsConfig from "./atoms";
 
 type AtomsConfig = typeof atomsConfig;
@@ -10,9 +10,9 @@ type UseRecoil<T> = {
 const acc: Record<Key, any> = { ...atomsConfig };
 let key: Key;
 
-for(key in acc) {
+for (key in acc) {
   const newAtom = atom({ key, default: acc[key] });
   acc[key] = () => useRecoilState(newAtom); // eslint-disable-line react-hooks/rules-of-hooks
 }
 
-export const useAtom = acc as UseRecoil<AtomsConfig>
+export const useAtom = acc as UseRecoil<AtomsConfig>;

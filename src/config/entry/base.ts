@@ -1,6 +1,4 @@
-import { SortDirection } from "@material-ui/data-grid";
 import { TBaseEntityConfig } from "config/entities";
-import { gql } from "graphql.macro";
 
 export const base: TBaseEntityConfig = {
 

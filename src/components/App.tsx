@@ -3,7 +3,7 @@ import { ApolloProvider } from "@apollo/client";
 import { client } from "data/graphql/config";
 import { RecoilRoot } from "recoil";
 import { LocalizationProvider } from "@material-ui/pickers";
-import DateFnsUtils from '@material-ui/pickers/adapter/date-fns';
+import DateFnsUtils from "@material-ui/pickers/adapter/date-fns";
 import { Theme } from "./Theme";
 import { Router } from "./Router";
 

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { PropsWithChildren } from "react";
 import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
 import "fontsource-roboto";
 
@@ -9,7 +9,7 @@ const theme = createMuiTheme({
   },
 });
 
-export const Theme: FC<{}> = ({ children }) => {
+export function Theme({ children }: PropsWithChildren<{}>) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

@@ -2,7 +2,6 @@ import { TEntityPageConfig, TListFieldConfig, TListSpecConfig } from "config/ent
 import { mergeDeepRight } from "ramda";
 import { base } from "./base";
 
-
 const spec: TEntityPageConfig<TListSpecConfig> = {
   sequenceA: [
     "name",

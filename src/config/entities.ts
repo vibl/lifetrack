@@ -1,19 +1,17 @@
 import { SortDirection } from "@material-ui/data-grid";
 import { DocumentNode } from "graphql";
 import * as z from "zod";
+import { Index, TNotFunction, TObject } from "util/types";
 import * as entry from "./entry";
 import * as tracker from "./tracker";
 import * as category from "./category";
 import * as unit from "./unit";
-import { Index, TNotFunction, TObject, TValue } from "util/types";
 
 export const entityTypeKs = ["entry", "tracker", "category", "unit"] as const;
 
 export const zEntityTypeK = z.enum([...entityTypeKs]);
 
 export type TEntityTypeK = typeof entityTypeKs[number];
-
-export type TGqlRequestK = "list" | "create" | "update" | "delete";
 
 export const defaultDefaultValueO = {
   string: "",
@@ -36,7 +34,7 @@ export type TListSpecConfig = Partial<TBaseFieldConfig> & {
 export type TListFieldConfig = TBaseFieldConfig & TListSpecConfig;
 
 export type TFormSpecConfig = Partial<TBaseFieldConfig> & {
-  defaultValue?: TNotFunction | ( (o: TObject) => any ),
+  defaultValue?: TNotFunction | ((o: TObject) => any),
   validation?: z.ZodString | z.ZodNumber | z.ZodTransformer<any, any>,
   dropdown?: DocumentNode,
   noInput?: boolean,

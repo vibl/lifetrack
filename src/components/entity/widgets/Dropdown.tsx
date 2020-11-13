@@ -12,10 +12,10 @@ export type DropdownOptionT = {
 };
 
 export function Dropdown(
-  { fieldO, ...props }: 
-  { fieldO: TFormFieldConfig, name: string } 
-    & Partial<AutocompleteProps<DropdownOptionT, false, false, false>>
-  ) {
+  { fieldO, ...props }:
+  { fieldO: TFormFieldConfig, name: string }
+    & Partial<AutocompleteProps<DropdownOptionT, false, false, false>>,
+) {
   const { name } = props;
   const { loading, error, data } = useQuery(fieldO.dropdown as DocumentNode);
 
@@ -23,8 +23,9 @@ export function Dropdown(
     () => {
       const list = data?.list;
       return sortBy(list, ["name"]);
-    }
-  , [data]);
+    },
+    [data],
+  );
 
   if (loading || !options) {
     return <p>Loading...</p>;
@@ -32,23 +33,25 @@ export function Dropdown(
   if (error) {
     return <p>Error :(</p>;
   }
-  const defaultValue = options.find(o => o.id === props.defaultValue );
+  const defaultValue = options.find(o => o.id === props.defaultValue);
   return (
     <Controller
       name={name}
       defaultValue={defaultValue}
       render={({ onChange }) => (
         <Autocomplete
-          autoComplete={true}
+          autoComplete
           options={options}
           getOptionLabel={option => option.name}
           getOptionSelected={(option, value) => option.id === value.id}
           style={{ width: 300 }}
-          renderInput={(params) => (
+          renderInput={params => (
             <TextField {...params} label={fieldO.label} variant="outlined" />
           )}
           defaultValue={defaultValue}
-          onChange={(e, option) => option && onChange(option) } />
-      )} />
+          onChange={(e, option) => option && onChange(option)}
+        />
+      )}
+    />
   );
 }

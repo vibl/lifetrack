@@ -1,9 +1,8 @@
-import { SortDirection } from "@material-ui/data-grid";
 import { gql } from "graphql.macro";
 import * as z from "zod";
 import { TEntityPageConfig, TFormSpecConfig } from "config/entities";
-import { base } from "./base";
 import { mergeDeepRight } from "ramda";
+import { base } from "./base";
 
 export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
   sequenceA: [

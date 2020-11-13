@@ -1,45 +1,77 @@
 import { DocumentNode } from "graphql";
 import { gql } from "graphql.macro";
-import { TEntityTypeK, TGqlRequestK } from "config/entities";
+import { TEntityTypeK } from "config/entities";
 
-export type TentititiesGql = Record<TEntityTypeK, Record<TGqlRequestK, DocumentNode>>
+export type TGqlRequestK =
+  | "list"
+  | "create"
+  | "loadBeforeUpdate"
+  | "update"
+  | "delete";
+
+export enum EGqlRequestK {
+  list = "list",
+  create = "create",
+  loadBeforeUpdate = "loadBeforeUpdate",
+  update = "update",
+  delete = "delete",
+}
+
+export type TentititiesGql = Record<
+  TEntityTypeK,
+  Record<EGqlRequestK, DocumentNode>
+>;
 
 export const entityGql: TentititiesGql = {
-
   entry: {
-
-    list: gql`{
-      list: entriesList {
-        createdAt
-        id
-        comment
-        time
-        value
-        tracker {
-          category {
+    list: gql`
+      {
+        list: entriesList {
+          createdAt
+          id
+          comment
+          time
+          value
+          tracker {
+            category {
+              name
+            }
             name
-          }
-          name
-          unit {
-            abbreviation
+            unit {
+              abbreviation
+            }
           }
         }
       }
-    }`,
+    `,
 
     create: gql`
       mutation CreateEntry($input: CreateEntryInput!) {
         createEntry(input: $input) {
-        clientMutationId
-        entry {
-          id
-          time
-          comment
-          value
-          trackerId
+          clientMutationId
+          entry {
+            id
+            time
+            comment
+            value
+            trackerId
           }
         }
-      }`,
+      }
+    `,
+
+    loadBeforeUpdate: gql`
+      query($input: Int!) {
+        entity: entry(id: $input) {
+          id
+          time
+          trackerId
+          value
+          comment
+          createdAt
+        }
+      }
+    `,
 
     update: gql`
       mutation UpdateEntry($input: UpdateEntryInput!) {
@@ -53,7 +85,8 @@ export const entityGql: TentititiesGql = {
             trackerId
           }
         }
-      }`,
+      }
+    `,
 
     delete: gql`
       mutation DeleteEntry($input: DeleteEntryInput!) {
@@ -63,34 +96,51 @@ export const entityGql: TentititiesGql = {
             id
           }
         }
-      }`,
+      }
+    `,
   },
   tracker: {
-    list: gql`{
-      list: trackersList {
-        id
-        name
-        entriesList {
+    list: gql`
+      {
+        list: trackersList {
           id
-        }
-        unit {
-          abbreviation
-        }
-        category {
           name
+          entriesList {
+            id
+          }
+          unit {
+            abbreviation
+          }
+          category {
+            name
+          }
         }
       }
-    }`,
+    `,
     create: gql`
       mutation CreateTracker($input: CreateTrackerInput!) {
         createTracker(input: $input) {
-        clientMutationId
-        tracker {
+          clientMutationId
+          tracker {
+            id
+            name
+            unitId
+            categoryId
+          }
+        }
+      }
+    `,
+
+    loadBeforeUpdate: gql`
+      query($input: Int!) {
+        entity: tracker(id: $input) {
           id
           name
           unitId
           categoryId
-      }}}`,
+        }
+      }
+    `,
 
     update: gql`
       mutation UpdateTracker($input: UpdateTrackerInput!) {
@@ -103,44 +153,66 @@ export const entityGql: TentititiesGql = {
             categoryId
           }
         }
-      }`,
+      }
+    `,
 
     delete: gql`
       mutation DeleteTracker($input: DeleteTrackerInput!) {
         deleteTracker(input: $input) {
-        clientMutationId
-        entity: tracker {
-          id
-          name
-          entriesList {
+          clientMutationId
+          entity: tracker {
             id
-          }
-          unit {
-            abbreviation
-          }
-          category {
             name
-      }}}}`,
+            entriesList {
+              id
+            }
+            unit {
+              abbreviation
+            }
+            category {
+              name
+            }
+          }
+        }
+      }
+    `,
   },
   category: {
-    list: gql`{
-      list: categoriesList {
-        id
-        name
-        trackersList {
+    list: gql`
+      {
+        list: categoriesList {
           id
-          entriesList {
+          name
+          trackersList {
             id
-      }}}}`,
+            entriesList {
+              id
+            }
+          }
+        }
+      }
+    `,
 
     create: gql`
       mutation CreateCategory($input: CreateCategoryInput!) {
         createCategory(input: $input) {
-        clientMutationId
-        category {
+          clientMutationId
+          category {
+            id
+            name
+          }
+        }
+      }
+    `,
+
+    loadBeforeUpdate: gql`
+      query($input: Int!) {
+        entity: category(id: $input) {
           id
           name
-      }}}`,
+        }
+      }
+    `,
 
     update: gql`
       mutation UpdateCategory($input: UpdateCategoryInput!) {
@@ -157,15 +229,18 @@ export const entityGql: TentititiesGql = {
     delete: gql`
       mutation DeleteCategory($input: DeleteCategoryInput!) {
         deleteCategory(input: $input) {
-        clientMutationId
-        entity: category {
-          id
+          clientMutationId
+          entity: category {
+            id
+          }
         }
-      }}`,
+      }
+    `,
   },
   unit: {
-    list: gql`{
-      list: unitsList {
+    list: gql`
+      {
+        list: unitsList {
           id
           name
           abbreviation
@@ -175,24 +250,44 @@ export const entityGql: TentititiesGql = {
             id
             entriesList {
               id
-      }}}}`,
+            }
+          }
+        }
+      }
+    `,
 
     create: gql`
       mutation CreateUnit($input: CreateUnitInput!) {
         createUnit(input: $input) {
-        clientMutationId
-        entity: unit {
+          clientMutationId
+          entity: unit {
+            id
+            name
+            abbreviation
+            baseUnit
+            multiplier
+            trackersList {
+              id
+              entriesList {
+                id
+              }
+            }
+          }
+        }
+      }
+    `,
+
+    loadBeforeUpdate: gql`
+      query($input: Int!) {
+        entity: unit(id: $input) {
           id
           name
           abbreviation
           baseUnit
           multiplier
-          trackersList {
-            id
-            entriesList {
-              id
-      }}}}}`,
-
+        }
+      }
+      `,
     update: gql`
       mutation UpdateUnit($input: UpdateUnitInput!) {
         updateUnit(input: $input) {
@@ -212,15 +307,17 @@ export const entityGql: TentititiesGql = {
           }
         }
       }
-      `,
+    `,
 
     delete: gql`
       mutation DeleteUnit($input: DeleteUnitInput!) {
         deleteUnit(input: $input) {
-        clientMutationId
-        entity: unit {
-          id
+          clientMutationId
+          entity: unit {
+            id
+          }
         }
-      }}`,
+      }
+    `,
   },
 };

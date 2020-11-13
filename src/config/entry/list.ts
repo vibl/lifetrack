@@ -21,7 +21,7 @@ const spec: TEntityPageConfig<TListSpecConfig> = {
     },
     tracker: {
       label: "Tracker",
-      type: "string",  
+      type: "string",
       width: 200,
       get: o => o.tracker.name,
     },

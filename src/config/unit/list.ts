@@ -3,7 +3,6 @@ import { TEntityPageConfig, TListFieldConfig, TListSpecConfig } from "config/ent
 import { mergeDeepRight } from "ramda";
 import { base } from "./base";
 
-
 const spec: TEntityPageConfig<TListSpecConfig> = {
   sequenceA: [
     "name",
@@ -34,8 +33,8 @@ const spec: TEntityPageConfig<TListSpecConfig> = {
     entriesCount: {
       get: o =>
         o.trackersList.reduce(
-          (acc: number, o: any) => acc + o.entriesList.length,
-          0
+          (acc: number, x: any) => acc + x.entriesList.length,
+          0,
         ),
       width: 200,
     },

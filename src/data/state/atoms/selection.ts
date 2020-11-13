@@ -6,7 +6,7 @@ function init() {
 
   const acc:Record<string, any> = {};
 
-  for(const key of entityTypeKs) {
+  for (const key of entityTypeKs) {
     acc[key] = [];
   }
   return acc as SelectionAtom;

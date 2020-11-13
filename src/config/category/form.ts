@@ -1,6 +1,6 @@
 import { TEntityPageConfig, TFormSpecConfig } from "config/entities";
-import { base } from "./base";
 import { mergeDeepRight } from "ramda";
+import { base } from "./base";
 
 export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
 

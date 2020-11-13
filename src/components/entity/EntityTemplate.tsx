@@ -6,7 +6,7 @@ import { entityTypeKs } from "config/entities";
 import { AppBar } from "components/AppBar";
 import { MenuDrawer } from "components/MenuDrawer";
 
-const menuItemProps = entityTypeKs.map( id => (
+const menuItemProps = entityTypeKs.map(id => (
   {
     to: id,
     text: upperFirst(id),

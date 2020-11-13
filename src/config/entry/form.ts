@@ -1,10 +1,10 @@
 import { TEntityPageConfig, TFormSpecConfig } from "config/entities";
 import { gql } from "graphql.macro";
-import { base } from "./base";
 import { mergeDeepRight } from "ramda";
+import { base } from "./base";
 
 export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
-  
+
   sequenceA: [
     "time",
     "trackerId",
@@ -19,7 +19,7 @@ export const spec: Partial<TEntityPageConfig<TFormSpecConfig>> = {
     },
     trackerId: {
       label: "Tracker",
-      type: "number",  
+      type: "number",
       defaultValue: 1,
       width: 200,
       dropdown: gql`

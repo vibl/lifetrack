@@ -7,12 +7,12 @@ export function CreateButton() {
   const [entityType, entityPage] = useEntityPageTuple();
   const pathTo = usePathTo();
 
-  return entityPage === "create" 
+  return entityPage === "create"
     ? null
     : (
       <Button
         component={Link}
-        to={pathTo([, "create" ])}
+        to={pathTo([, "create"])}
         color="inherit"
       >
         Create {entityType}
