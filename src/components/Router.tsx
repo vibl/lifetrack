@@ -96,7 +96,7 @@ function Routes() {
       children: [
         {
           path: "/",
-          element: <Redirect to="/unit/list" />,
+          element: <Redirect to="/entry/create" />,
         },
         {
           path: ":entityType",

@@ -31,13 +31,15 @@
       "dom",
       "dom.iterable",
       "esnext"
-    ],
+    ]
   },
   "include": [
-    "./src/**/*",
+    "./src/**/*"
   ],
   "exclude": [
-    "./inspiration/**/*", ".archive/**/*", "./.vscode/**/*"
+    "./inspiration/**/*",
+    ".archive/**/*",
+    "./.vscode/**/*"
   ],
   "typeAcquisition": {
     "enable": true

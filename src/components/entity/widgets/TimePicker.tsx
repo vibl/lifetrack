@@ -5,7 +5,12 @@ import { TFormFieldConfig } from "config/entities";
 import { DateTimePicker } from "@material-ui/pickers";
 
 export function TimePicker(
-  { fieldO, name, defaultValue }:
+  {
+    fieldO,
+    name,
+    defaultValue,
+    className,
+  }:
   { fieldO: TFormFieldConfig } & Partial<TextFieldProps>,
 ) {
   return (
@@ -17,7 +22,7 @@ export function TimePicker(
           ampm={false}
           label={fieldO.label}
           onChange={data => { console.log("onChange:", data); onChange(data); }}
-          renderInput={props => <TextField {...props} helperText="" />}
+          renderInput={props => <TextField {...props} helperText="" className={className} />}
           onError={console.log}
           value={value}
           inputFormat="yyyy/MM/dd HH:mm"

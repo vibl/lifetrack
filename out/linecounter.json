@@ -1,0 +1,2382 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "/home/vianney/dev/js/perso/quantself/lifetrack",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2020-11-13 21:11:37",
+            "filesum": 205,
+            "codesum": 45532,
+            "commentsum": 780,
+            "blanksum": 2442,
+            "statistics": {
+                ".js": {
+                    "code": 571,
+                    "comment": 45,
+                    "blank": 17
+                },
+                ".json": {
+                    "code": 26408,
+                    "comment": 0,
+                    "blank": 19
+                },
+                ".html": {
+                    "code": 20,
+                    "comment": 23,
+                    "blank": 0
+                },
+                ".tsx": {
+                    "code": 1503,
+                    "comment": 38,
+                    "blank": 174
+                },
+                "": {
+                    "code": 100,
+                    "comment": 1,
+                    "blank": 17
+                },
+                ".txt": {
+                    "code": 3,
+                    "comment": 1,
+                    "blank": 0
+                },
+                ".ts": {
+                    "code": 2530,
+                    "comment": 455,
+                    "blank": 371
+                },
+                ".yml": {
+                    "code": 41,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".graphql": {
+                    "code": 1190,
+                    "comment": 0,
+                    "blank": 508
+                },
+                ".css": {
+                    "code": 447,
+                    "comment": 217,
+                    "blank": 147
+                },
+                ".map": {
+                    "code": 4,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".md": {
+                    "code": 9,
+                    "comment": 0,
+                    "blank": 4
+                },
+                ".tsbuildinfo": {
+                    "code": 12706,
+                    "comment": 0,
+                    "blank": 1184
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": ".archive/category/create.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": ".archive/category/delete.graphql"
+                },
+                {
+                    "blank": 2,
+                    "code": 43,
+                    "comment": 0,
+                    "filename": ".archive/category/index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": ".archive/category/list.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": ".archive/category/update.graphql"
+                },
+                {
+                    "blank": 18,
+                    "code": 62,
+                    "comment": 4,
+                    "filename": ".archive/EntityRoutes.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": ".archive/entry/create.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": ".archive/entry/delete.graphql"
+                },
+                {
+                    "blank": 2,
+                    "code": 81,
+                    "comment": 0,
+                    "filename": ".archive/entry/index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": ".archive/entry/list.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": ".archive/entry/update.graphql"
+                },
+                {
+                    "blank": 5,
+                    "code": 12,
+                    "comment": 4,
+                    "filename": ".archive/recoil copy 2.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 19,
+                    "comment": 4,
+                    "filename": ".archive/recoil.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": ".archive/route.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": ".archive/Routes.old.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": ".archive/Routes.tsx"
+                },
+                {
+                    "blank": 9,
+                    "code": 34,
+                    "comment": 1,
+                    "filename": ".archive/routes.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": ".archive/tracker/create.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": ".archive/tracker/delete.graphql"
+                },
+                {
+                    "blank": 3,
+                    "code": 69,
+                    "comment": 0,
+                    "filename": ".archive/tracker/index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": ".archive/tracker/list.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": ".archive/tracker/update.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": ".archive/unit/create.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": ".archive/unit/delete.graphql"
+                },
+                {
+                    "blank": 1,
+                    "code": 80,
+                    "comment": 0,
+                    "filename": ".archive/unit/index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": ".archive/unit/list.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": ".archive/unit/update.graphql"
+                },
+                {
+                    "blank": 1,
+                    "code": 84,
+                    "comment": 8,
+                    "filename": ".eslintrc.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 25,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1184,
+                    "code": 12706,
+                    "comment": 0,
+                    "filename": "dist/tsconfig.tsbuildinfo"
+                },
+                {
+                    "blank": 13,
+                    "code": 139,
+                    "comment": 0,
+                    "filename": "inspiration/AddRowDialog.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "inspiration/complex-table/index.css"
+                },
+                {
+                    "blank": 12,
+                    "code": 65,
+                    "comment": 21,
+                    "filename": "inspiration/complex-table/index.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "inspiration/complex-table/makeData.js"
+                },
+                {
+                    "blank": 25,
+                    "code": 232,
+                    "comment": 22,
+                    "filename": "inspiration/EnhancedTable.tsx"
+                },
+                {
+                    "blank": 7,
+                    "code": 75,
+                    "comment": 4,
+                    "filename": "inspiration/GlobalFilter.tsx"
+                },
+                {
+                    "blank": 10,
+                    "code": 78,
+                    "comment": 0,
+                    "filename": "inspiration/TablePaginationActions.tsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 85,
+                    "comment": 0,
+                    "filename": "inspiration/TableToolbar.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 20074,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 85,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 23,
+                    "filename": "public/index.html"
+                },
+                {
+                    "filename": "public/logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public/logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "public/manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "public/robots.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "server/codegen.yml"
+                },
+                {
+                    "blank": 1,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "server/codegen_near-operation-file.yml"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/.editorconfig"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/.gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/.npmignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/createCategory.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/createEntry.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/createTracker.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/createUnit.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/deleteCategory.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/deleteCategoryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/deleteEntry.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/deleteEntryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/deleteTracker.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/deleteTrackerByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/deleteUnit.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/deleteUnitByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/updateCategory.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/updateCategoryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/updateEntry.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/updateEntryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/updateTracker.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/updateTrackerByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/updateUnit.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/mutations/updateUnitByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/categories.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/category.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/categoryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/entries.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/entry.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/entryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/node.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/nodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/query.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/tracker.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/trackerByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/trackers.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/unit.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/unitByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops.ts/queries/units.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/createCategory.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/createEntry.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/createTracker.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/createUnit.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/deleteCategory.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/deleteCategoryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/deleteEntry.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/deleteEntryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/deleteTracker.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/deleteTrackerByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/deleteUnit.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/deleteUnitByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/updateCategory.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/updateCategoryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/updateEntry.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/updateEntryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/updateTracker.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/updateTrackerByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/updateUnit.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/mutations/updateUnitByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/categoriesList.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/category.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/categoryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/entriesList.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/entry.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/entryByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/index.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/node.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/nodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/query.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/tracker.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/trackerByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/trackersList.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/unit.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/unitByNodeId.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/generated-ops/queries/unitsList.graphql"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/out/index.d.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 165,
+                    "comment": 6,
+                    "filename": "server/generate-graphql-operations/out/index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/out/index.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 859,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/package.json"
+                },
+                {
+                    "blank": 4,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/README.md"
+                },
+                {
+                    "blank": 11,
+                    "code": 75,
+                    "comment": 8,
+                    "filename": "server/generate-graphql-operations/src/index.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/tsconfig-npm.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/tsconfig.json"
+                },
+                {
+                    "blank": 13,
+                    "code": 103,
+                    "comment": 0,
+                    "filename": "server/generate-graphql-operations/tslint.json"
+                },
+                {
+                    "blank": 508,
+                    "code": 485,
+                    "comment": 0,
+                    "filename": "server/generated/schema.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 24,
+                    "comment": 1,
+                    "filename": "server/out/generated-ops.ts/mutations/index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "server/out/generated-ops.ts/mutations/index.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "server/out/generated-ops.ts/queries/index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "server/out/generated-ops.ts/queries/index.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 165,
+                    "comment": 6,
+                    "filename": "server/out/src/index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "server/out/src/index.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 5116,
+                    "comment": 0,
+                    "filename": "server/package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "server/package.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "server/src/postgraphile"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "server/tsconfig.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/components/App.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/CreateButton.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/DeleteButton.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/index.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityCreate.tsx"
+                },
+                {
+                    "blank": 15,
+                    "code": 120,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityForm.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 85,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityTable.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityTemplate.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityUpdate.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/components/entity/widgets/Dropdown.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src/components/entity/widgets/TimePicker.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/components/MenuDrawer.tsx"
+                },
+                {
+                    "blank": 17,
+                    "code": 115,
+                    "comment": 1,
+                    "filename": "src/components/Router.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 46,
+                    "comment": 2,
+                    "filename": "src/components/table/Table.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src/components/Theme.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/config/category/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/category/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/config/category/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/category/index.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/config/category/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/category/update.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/config/entities.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src/config/entry/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/entry/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/config/entry/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/entry/index.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/config/entry/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/entry/update.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/tracker/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/tracker/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/config/tracker/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/tracker/index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/tracker/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/tracker/update.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/unit/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/unit/create.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "src/config/unit/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/unit/index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/config/unit/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/unit/update.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/data/graphql/config.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 305,
+                    "comment": 0,
+                    "filename": "src/data/graphql/entities.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/data/graphql/hooks.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/data/state/atoms/index.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/data/state/atoms/selection.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "src/data/state/recoil.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/index.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/index.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 1,
+                    "filename": "src/react-app-env.d.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src/setupTests.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/tailwind.css"
+                },
+                {
+                    "blank": 143,
+                    "code": 426,
+                    "comment": 217,
+                    "filename": "src/tailwind.out.css"
+                },
+                {
+                    "blank": 221,
+                    "code": 1175,
+                    "comment": 435,
+                    "filename": "src/types/graphql/types.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/util/impure.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 1,
+                    "filename": "src/util/pure.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 9,
+                    "comment": 1,
+                    "filename": "src/util/types.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 2,
+                    "filename": "tailwind.config.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "tsconfig.json"
+                }
+            ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2020-11-13 21:13:03",
+            "filesum": 56,
+            "codesum": 3229,
+            "commentsum": 663,
+            "blanksum": 557,
+            "statistics": {
+                ".css": {
+                    "code": 435,
+                    "comment": 217,
+                    "blank": 146
+                },
+                ".ts": {
+                    "code": 2065,
+                    "comment": 439,
+                    "blank": 333
+                },
+                ".tsx": {
+                    "code": 729,
+                    "comment": 7,
+                    "blank": 78
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 1,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/components/App.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/CreateButton.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/DeleteButton.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/index.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityCreate.tsx"
+                },
+                {
+                    "blank": 15,
+                    "code": 120,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityForm.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 85,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityTable.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityTemplate.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityUpdate.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/components/entity/widgets/Dropdown.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src/components/entity/widgets/TimePicker.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/components/MenuDrawer.tsx"
+                },
+                {
+                    "blank": 17,
+                    "code": 115,
+                    "comment": 1,
+                    "filename": "src/components/Router.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 46,
+                    "comment": 2,
+                    "filename": "src/components/table/Table.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src/components/Theme.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/config/category/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/category/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/config/category/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/category/index.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/config/category/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/category/update.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/config/entities.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src/config/entry/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/entry/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/config/entry/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/entry/index.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/config/entry/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/entry/update.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/tracker/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/tracker/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/config/tracker/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/tracker/index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/tracker/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/tracker/update.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/unit/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/unit/create.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "src/config/unit/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/unit/index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/config/unit/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/unit/update.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/data/graphql/config.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 305,
+                    "comment": 0,
+                    "filename": "src/data/graphql/entities.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/data/graphql/hooks.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/data/state/atoms/index.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/data/state/atoms/selection.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "src/data/state/recoil.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/index.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/index.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 1,
+                    "filename": "src/react-app-env.d.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src/setupTests.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/tailwind.css"
+                },
+                {
+                    "blank": 143,
+                    "code": 426,
+                    "comment": 217,
+                    "filename": "src/tailwind.out.css"
+                },
+                {
+                    "blank": 221,
+                    "code": 1175,
+                    "comment": 435,
+                    "filename": "src/types/graphql/types.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/util/impure.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 1,
+                    "filename": "src/util/pure.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 9,
+                    "comment": 1,
+                    "filename": "src/util/types.ts"
+                }
+            ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2020-11-13 21:14:41",
+            "filesum": 54,
+            "codesum": 1628,
+            "commentsum": 11,
+            "blanksum": 193,
+            "statistics": {
+                ".ts": {
+                    "code": 890,
+                    "comment": 4,
+                    "blank": 112
+                },
+                ".tsx": {
+                    "code": 729,
+                    "comment": 7,
+                    "blank": 78
+                },
+                ".css": {
+                    "code": 9,
+                    "comment": 0,
+                    "blank": 3
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 1,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/components/App.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/CreateButton.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/DeleteButton.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/index.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityCreate.tsx"
+                },
+                {
+                    "blank": 15,
+                    "code": 120,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityForm.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 85,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityTable.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityTemplate.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityUpdate.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/components/entity/widgets/Dropdown.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src/components/entity/widgets/TimePicker.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/components/MenuDrawer.tsx"
+                },
+                {
+                    "blank": 17,
+                    "code": 115,
+                    "comment": 1,
+                    "filename": "src/components/Router.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 46,
+                    "comment": 2,
+                    "filename": "src/components/table/Table.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src/components/Theme.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/config/category/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/category/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/config/category/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/category/index.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/config/category/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/category/update.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/config/entities.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src/config/entry/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/entry/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/config/entry/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/entry/index.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/config/entry/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/entry/update.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/tracker/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/tracker/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/config/tracker/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/tracker/index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/tracker/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/tracker/update.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/unit/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/unit/create.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "src/config/unit/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/unit/index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/config/unit/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/unit/update.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/data/graphql/config.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 305,
+                    "comment": 0,
+                    "filename": "src/data/graphql/entities.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/data/graphql/hooks.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/data/state/atoms/index.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/data/state/atoms/selection.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "src/data/state/recoil.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/index.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/index.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 1,
+                    "filename": "src/react-app-env.d.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src/setupTests.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/tailwind.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/util/impure.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 1,
+                    "filename": "src/util/pure.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 9,
+                    "comment": 1,
+                    "filename": "src/util/types.ts"
+                }
+            ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2020-11-13 21:15:12",
+            "filesum": 54,
+            "codesum": 1628,
+            "commentsum": 11,
+            "blanksum": 193,
+            "statistics": {
+                ".tsx": {
+                    "code": 729,
+                    "comment": 7,
+                    "blank": 78
+                },
+                ".ts": {
+                    "code": 890,
+                    "comment": 4,
+                    "blank": 112
+                },
+                ".css": {
+                    "code": 9,
+                    "comment": 0,
+                    "blank": 3
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 1,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/components/App.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/CreateButton.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/DeleteButton.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/components/AppBar/index.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityCreate.tsx"
+                },
+                {
+                    "blank": 15,
+                    "code": 120,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityForm.tsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 85,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityTable.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityTemplate.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/components/entity/EntityUpdate.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/components/entity/widgets/Dropdown.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src/components/entity/widgets/TimePicker.tsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/components/MenuDrawer.tsx"
+                },
+                {
+                    "blank": 17,
+                    "code": 115,
+                    "comment": 1,
+                    "filename": "src/components/Router.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 46,
+                    "comment": 2,
+                    "filename": "src/components/table/Table.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src/components/Theme.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/config/category/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/category/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/config/category/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/category/index.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/config/category/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/category/update.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/config/entities.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src/config/entry/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/entry/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/config/entry/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/entry/index.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/config/entry/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/entry/update.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/tracker/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/tracker/create.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/config/tracker/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/tracker/index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/tracker/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/tracker/update.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/config/unit/base.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/unit/create.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "src/config/unit/form.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/config/unit/index.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/config/unit/list.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/config/unit/update.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/data/graphql/config.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 305,
+                    "comment": 0,
+                    "filename": "src/data/graphql/entities.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/data/graphql/hooks.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/data/state/atoms/index.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/data/state/atoms/selection.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "src/data/state/recoil.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/index.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/index.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 1,
+                    "filename": "src/react-app-env.d.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src/setupTests.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/tailwind.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/util/impure.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 1,
+                    "filename": "src/util/pure.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 9,
+                    "comment": 1,
+                    "filename": "src/util/types.ts"
+                }
+            ]
+        }
+    ]
+}

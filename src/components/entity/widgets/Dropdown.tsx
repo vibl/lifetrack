@@ -16,7 +16,7 @@ export function Dropdown(
   { fieldO: TFormFieldConfig, name: string }
     & Partial<AutocompleteProps<DropdownOptionT, false, false, false>>,
 ) {
-  const { name } = props;
+  const { name, className } = props;
   const { loading, error, data } = useQuery(fieldO.dropdown as DocumentNode);
 
   const options = React.useMemo(
@@ -46,10 +46,15 @@ export function Dropdown(
           getOptionSelected={(option, value) => option.id === value.id}
           style={{ width: 300 }}
           renderInput={params => (
-            <TextField {...params} label={fieldO.label} variant="outlined" />
+            <TextField
+              {...params}
+              label={fieldO.label}
+              variant="outlined"
+            />
           )}
           defaultValue={defaultValue}
           onChange={(e, option) => option && onChange(option)}
+          className={className}
         />
       )}
     />

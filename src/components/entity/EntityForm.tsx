@@ -108,7 +108,10 @@ export function EntityForm(
     <Box p={1} clone>
       <Card>
         <FormProvider {...formMethodsO}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col w-96"
+          >
             {sequenceA.map(fieldId => {
               const fieldO = fieldC[fieldId];
               const FieldComponent = getFieldComponent(fieldO);
@@ -123,6 +126,7 @@ export function EntityForm(
                   disabled={fieldO.noInput}
                   inputRef={register}
                   InputLabelProps={{ shrink: fieldO.noInput }}
+                  className="m-3"
                 />
               );
             })}

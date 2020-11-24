@@ -61,7 +61,7 @@ export function EntityTable() {
   }
 
   function onSelection(selectedA: SelectionChangeParams) {
-    const selectionA = selectedA.rows.map(o => Number(o.id));
+    const selectionA = selectedA.rowIds.map(id => Number(id));
     setSelection((sel: SelectionAtom) => ({ ...sel, [entityType]: selectionA }));
   }
   function handleCellClick(cellO: CellParams) {
